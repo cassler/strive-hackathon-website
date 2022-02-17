@@ -3,10 +3,11 @@
 @tailwind utilities;
 
 button.ui {
-  @apply justify-center w-auto px-4 py-2 items-center;
+  @apply justify-center w-auto items-center;
   @apply text-sm font-medium text-white bg-black rounded-md;
   @apply bg-opacity-20 hover:bg-opacity-30;
   @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75;
+  @apply px-2 py-2 sm:px-4 sm:py-2;
 }
 
 @layer components {
@@ -68,7 +69,7 @@ button.ui {
       @apply text-xl font-normal;
      > div { @apply -mb-4 }
       span {
-        @apply font-semibold text-xs tracking-tight;
+        @apply font-semibold text-xs tracking-tight flex-nowrap whitespace-nowrap mr-8;
 
       }
     }
