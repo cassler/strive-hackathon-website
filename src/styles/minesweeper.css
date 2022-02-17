@@ -9,7 +9,7 @@
     @apply bg-red-300;
   }
   button.ms-item {
-    @apply w-10 h-10 text-xl rounded font-light;
+    @apply w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 sm:text-lg lg:text-xl rounded font-light;
     @apply shadow bg-white/25 hover:scale-110 hover:shadow-lg;
     @apply hover:bg-white/25 transition-all duration-500 ease-in-out;
 

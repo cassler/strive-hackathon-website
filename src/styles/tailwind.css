@@ -60,7 +60,8 @@ button.ui {
     @apply text-base font-sans;
     @apply fixed bottom-2 w-screen;
     @apply dark:text-white;
-    @apply space-x-4;
+    @apply px-8;
+    @apply max-w-[100%] w-full;
 
 
     h2 {

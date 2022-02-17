@@ -3,7 +3,6 @@ import {
 } from 'react';
 import { MinusCircleIcon, PlusCircleIcon } from '@heroicons/react/solid';
 import { Dialog } from '@headlessui/react';
-import DropdownMenu from './DropdownMenu';
 import './styles/minesweeper.css';
 
 export type BoardPosition = {
@@ -91,7 +90,6 @@ export function useMineSweeper(initialSize: number = 14, initialDifficulty: numb
   function getGridStyle(s: number):CSSProperties {
     return {
       display: 'grid',
-      gap: '8px',
       gridTemplateColumns: `repeat(${s}, min-content)`,
       gridTemplateRows: `repeat(${s}, min-content)`,
     };
@@ -151,8 +149,8 @@ export function MineSweeper() {
 
   return (
     <BoardContext.Provider value={ctx}>
-      <div title="toolbar" className="flex absolute top-4 items-center justify-around p-2 gap-2 w-full">
-        <div title="current-score flex-1">
+      <div title="toolbar" className="App-header max-w-[100%] w-screen justify-between mt-2 top-0">
+        <div title="current-score flex-1 text-4xl">
           {`${flippedItems.length} / ${size * size}`}
         </div>
         <div className="flex-0 flex gap-2 items-center justify-center w-auto">
@@ -164,7 +162,7 @@ export function MineSweeper() {
           </button>
         </div>
       </div>
-      <div className="minesweeper-board mb-4" style={getGridStyle(size)}>
+      <div className="minesweeper-board mb-4 gap-1 sm:gap-2" style={getGridStyle(size)}>
         {board.map((pos, idx) => <Item idx={idx} key={idx.toString()} {...pos} />)}
       </div>
       <Dialog
