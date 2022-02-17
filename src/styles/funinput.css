@@ -1,0 +1,26 @@
+.fun-input {
+  @apply w-full p-4 shadow-inner;
+  @apply rounded bg-white dark:bg-gray-100/5 placeholder-transparent;
+  @apply outline-none;
+  @apply font-semibold transition-all;
+  @apply selection:bg-black/20;
+  @apply selection:p-2;
+  @apply overflow-ellipsis;
+  @apply focus:shadow-lg focus:shadow-black/25;
+  @apply ring focus:ring-gray-300 focus:ring-opacity-50;
+}
+
+.fun-label {
+  @apply dark:peer-placeholder-shown:text-white/90;
+  @apply absolute left-4 top-0.5 text-xs;
+  @apply transition-all font-semibold rounded text-black;
+  @apply pointer-events-none dark:text-white/20;
+  @apply peer-focus-within:bg-transparent peer-focus-within:-top-5;
+  @apply peer-focus-within:text-xs peer-focus-within:text-white;
+  @apply peer-focus-within:font-semibold;
+  @apply peer-placeholder-shown:bg-transparent peer-placeholder-shown:top-4;
+  @apply peer-placeholder-shown:font-normal;
+  @apply peer-placeholder-shown:text-base;
+  @apply text-black/50 dark:text-white/50;
+}
+

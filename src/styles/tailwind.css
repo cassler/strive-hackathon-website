@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+button.ui {
+  @apply justify-center w-auto px-4 py-2 items-center;
+  @apply text-sm font-medium text-white bg-black rounded-md;
+  @apply bg-opacity-20 hover:bg-opacity-30;
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75;
+}
+
+@layer components {
+  body {
+    @apply bg-white;
+    @apply text-gray-500;
+    @apply dark:bg-gray-800 dark:text-white;
+  }
+  h4 {
+    @apply text-gray-400;
+    @apply font-semibold;
+    @apply text-xs uppercase;
+    @apply tracking-widest;
+    @apply leading-relaxed;
+  }
+}
+
+/* Within the components layer can be extended with tw styles */
+
+.App-logo {
+  height: 40px;
+  pointer-events: none;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-blueuced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+
+@layer components {
+
+
+  .App-menu-items {
+    @apply z-10 w-40;
+    @apply bg-white/50 backdrop-blur-md divide-y divide-white/25;
+    @apply rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none;;
+  }
+
+
+
+  .App-header {
+    @apply flex items-center justify-center;
+    @apply text-base py-3 h-16;
+    @apply text-base font-sans;
+    @apply fixed bottom-2 w-screen;
+    @apply dark:text-white;
+    @apply space-x-4;
+
+
+    h2 {
+      @apply text-xl font-normal;
+     > div { @apply -mb-4 }
+      span {
+        @apply font-semibold text-xs tracking-tight;
+
+      }
+    }
+
+
+  }
+  .App-header
+  .App-logo {
+    @apply w-10;
+  }
+}
