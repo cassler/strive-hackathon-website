@@ -67,8 +67,8 @@ button.ui {
 
     h2 {
       @apply text-xl font-normal;
-     > div { @apply -mb-4 }
-      span {
+     div { @apply -mb-4 }
+    span {
         @apply font-semibold text-xs tracking-tight flex-nowrap whitespace-nowrap mr-8;
 
       }

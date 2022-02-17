@@ -22,8 +22,7 @@ module.exports = {
       colors: ({theme}) => ({
         'brand-orange': '#D7832A',
         'brand-orange-light': '#F7A700',
-        'brand-blue': 'red',
-        // 'brand-blue': theme('colors')[2],
+        'brand-blue': '#4497CB',
         'brand-blue-light': '#71CFEB',
         'brand-green': '#6CA438',
         'brand-green-light': '#A3D55D',

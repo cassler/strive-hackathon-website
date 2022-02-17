@@ -30,7 +30,7 @@ type Props = {
 export default function DropdownMenu({ items }: Props) {
   const initialText = 'Launcher';
   const [current, setCurrent] = useState(initialText);
-  const { bonus, toggleBonus } = useContext(BonusContext);
+
   const { isAuthenticated, logout, loginWithRedirect, user, isLoading } = useAuth0();
   const list:MenuTuples[] = items || defaultItems;
   const { darkMode, toggle } = useDarkMode();
@@ -63,6 +63,7 @@ export default function DropdownMenu({ items }: Props) {
 
     }
   }
+  const { bonus, toggleBonus } = useContext(BonusContext);
   return (
     <Menu as="nav" className="relative inline-flex text-left text-gray-900">
       <Menu.Button className="flex ui">
