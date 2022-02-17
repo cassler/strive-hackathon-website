@@ -14,7 +14,8 @@ export function AppHeader() {
     if (!isAuthenticated) {
       loginWithRedirect();
     } else {
-      logout();
+      logout({ returnTo: window.location.origin });
+
     }
   }
 
