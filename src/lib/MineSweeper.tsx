@@ -73,8 +73,13 @@ export function MineSweeper() {
   return (
     <BoardContext.Provider value={ctx}>
       <div title="toolbar" className="App-header absolute max-w-[100%] w-screen justify-between mt-2 top-0">
-        <div title="current-score flex-1 text-4xl">
-          {`${flippedItems.length} / ${size * size}`}
+        <div title="current-score flex-1 items-center justify-center text-4xl text-black dark:text-white">
+          <div className='flex justify-baseline items-center gap-2'>
+            <div>Score</div>
+            <div className='text-3xl w-12 text-center'>{ctx.ctx.flippedItems.length} </div>
+            <div className='text-xs opacity-75'>of {ctx.size * ctx.size}</div>
+          </div>
+
         </div>
         <div className="flex-0 flex gap-2 items-center justify-center w-auto">
           <span title="adjust-size" className="text-sm text-white/50 flex-1">Size</span>
@@ -88,6 +93,7 @@ export function MineSweeper() {
       <div className="minesweeper-board mb-4 gap-1 sm:gap-2" style={getGridStyle(size)}>
         {board.map((pos, idx) => <Item idx={idx} key={idx.toString()} {...pos} />)}
       </div>
+      {JSON.stringify(ctx.flippedItems)}
       <Dialog
         open={ctx.status === 'lost'}
         onClose={() => ctx.handleNewGame()}

@@ -73,7 +73,8 @@ export function useMineSweeper(initialSize: number = 14, initialDifficulty: numb
       setStatus('lost');
       return;
     }
-    setFlippedItems([...flippedItems, idx]);
+    const newFlipList = [...flippedItems, idx].filter((v,i,s) => s.indexOf(v) === i);
+    setFlippedItems(newFlipList);
   }
 
   function getGridStyle(s: number):CSSProperties {
@@ -97,7 +98,8 @@ export function useMineSweeper(initialSize: number = 14, initialDifficulty: numb
     if (next.length === 0) return;
     // wait 100ms before flipping the next series of neighbors.
     setTimeout(() => {
-      setFlippedItems([...flippedItems, ...next.flat()]);
+      const flipSet = [...flippedItems, ...next.flat()].filter((v,i,s) => s.indexOf(v) === i).sort((a, b) => a - b);
+      setFlippedItems(flipSet);
     }, 75);
   }, [flippedItems]);
 
