@@ -73,7 +73,8 @@ export function useMineSweeper(initialSize: number = 14, initialDifficulty: numb
       setStatus('lost');
       return;
     }
-    const newFlipList = [...flippedItems, idx].filter((v,i,s) => s.indexOf(v) === i);
+    // this will add the current item to the flippedItems list
+    const newFlipList = sortedUnique([...flippedItems, idx])
     setFlippedItems(newFlipList);
   }
 
@@ -83,6 +84,10 @@ export function useMineSweeper(initialSize: number = 14, initialDifficulty: numb
       gridTemplateColumns: `repeat(${s}, min-content)`,
       gridTemplateRows: `repeat(${s}, min-content)`,
     };
+  }
+
+  function sortedUnique<T>(val: T[]): T[] {
+    return val.filter((v,i,s) => s.indexOf(v) === i).sort((a:any, b:any) => a - b);
   }
 
   useEffect(() => handleNewGame(), [size, difficulty]);
@@ -98,7 +103,8 @@ export function useMineSweeper(initialSize: number = 14, initialDifficulty: numb
     if (next.length === 0) return;
     // wait 100ms before flipping the next series of neighbors.
     setTimeout(() => {
-      const flipSet = [...flippedItems, ...next.flat()].filter((v,i,s) => s.indexOf(v) === i).sort((a, b) => a - b);
+      // this is where we reveal empty neighbor squares
+      const flipSet = sortedUnique([...flippedItems, ...next.flat()])
       setFlippedItems(flipSet);
     }, 75);
   }, [flippedItems]);
