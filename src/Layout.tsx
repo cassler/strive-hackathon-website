@@ -8,18 +8,6 @@ import { useMemo } from 'react';
 
 export function AppHeader() {
   const { darkMode, toggle } = useDarkMode();
-  const {
-    user, isAuthenticated, loginWithRedirect, logout, isLoading,
-  } = useAuth0();
-
-  function handleProfileClick() {
-    if (isLoading) return;
-    if (!isAuthenticated) {
-      loginWithRedirect();
-    } else {
-      logout({ returnTo: window.location.origin });
-    }
-  }
 
   const Logo = () => useMemo(() => (
     <div><img src={darkMode ? lightLogo : logoUrl} className='h-8 w-auto translate-y-1 opacity-90'/></div>
