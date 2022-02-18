@@ -2,28 +2,16 @@
 
 ## Stack
 
-### Framework - Vite (react-ts)
-
-- `vite.config.ts`
-
-### Styling - Tailwind + PostCSS
-
-- `postcss.config.js`
-- `tailwind.config.js`
+- Vite (Typescript/React)
+- Tailwind3 for styling framework
+- PostCSS (with extend, apply and nesting plugins)
+- Jest for unit testing
+- Github Workflows for C
+- Vercel for CD
 
 ### Folder Structure
 
-### Configuration Files
-- `postcss.config.js`
-- `tailwind.config.js`
-- `vite.config.ts`
-- `tsconfig.json`
-- `tsconfig.node.json`
-- `jest.config.js`
-
-### Directories
-
-- `src/styles`
-- `src/assets`
-- `src/lib`
-- `src/__test__`
+- `src/__test__` - is the home for test coverage.
+- `src/assets` - static media such as media or binaries.
+- `src/lib` - React components, template parts and custom libraries.
+- `src/styles` - The only place to use CSS.

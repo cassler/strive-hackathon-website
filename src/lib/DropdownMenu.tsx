@@ -2,7 +2,7 @@ import { Menu, Transition } from '@headlessui/react';
 import React, { Fragment, useContext, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import {
-  ArchiveIcon, ClipboardCopyIcon, ChevronUpIcon, UserIcon, ArrowCircleRightIcon, LogoutIcon, MoonIcon, SunIcon, QuestionMarkCircleIcon,
+  ArchiveIcon, ClipboardCopyIcon, ChevronUpIcon, UserIcon, ArrowCircleRightIcon, LogoutIcon, MoonIcon, SunIcon, QuestionMarkCircleIcon, ClockIcon,
 } from '@heroicons/react/solid';
 import useDarkMode from './use-dark';
 import { BonusContext } from '../App';
@@ -65,9 +65,13 @@ export default function DropdownMenu({ items }: Props) {
   }
   const { bonus, toggleBonus } = useContext(BonusContext);
   return (
-    <Menu as="nav" className="relative inline-flex text-left text-gray-900">
+    <Menu as="nav" className="relative inline-flex text-left text-gray-900 w-auto">
       <Menu.Button className="flex ui">
-        <div className="flex-1 text-left flex-nowrap">{user?.name ? user.name : 'Login'}</div>
+        <div className="flex-1 text-left flex-nowrap">
+          {isLoading ? 'Loading...' : (
+            <span>{`${user?.name ? user.name : 'Guest'}`}</span>
+          )}
+        </div>
         {isLoading ? (
           <ArrowCircleRightIcon
           className="w-5 h-5 ml-2 mr-1 text-violet-200 hover:text-violet-100 flex-0"
@@ -90,9 +94,8 @@ export default function DropdownMenu({ items }: Props) {
       >
         <Menu.Items className="App-menu-items absolute right-0 bottom-10 origin-bottom-right">
           <div className="px-1 py-1 ">
-            {list.map(([title, icon]) => (
-              <RenderButton onClick={() => setCurrent(title)} text={title} Icon={icon} />
-            ))}
+
+            <RenderButton disabled onClick={() => {}} text='Timers' Icon={ClockIcon} />
             <RenderButton disabled={!isAuthenticated} onClick={() => toggleBonus(!bonus)} text='Easter Eggs' Icon={QuestionMarkCircleIcon} />
           </div>
           <div className="px-1 py-1">
