@@ -18,7 +18,7 @@ export function AppHeader({className = ''}: {className:string}) {
         <a href="https://striveconsulting.com/" target="_blank" className="flex-1 pb-1.5">
           <div className='flex items-center gap-2 hover:-translate-y-1 transition-all duration-250'>
           <Logo />
-          <div className='flex flex-col items-left text-left justify-center -space-y-2 text-black/75 dark:text-white/90 dark:hover:text-white transition-all duration-200'>
+          <div className='flex flex-col items-left text-left justify-center -space-y-2 text-black/75 dark:text-white/90 dark:hover:text-white'>
             <div className='text-2xl font-normal'>strive</div>
             <div className='font-semibold text-xs tracking-tighter flex-nowrap whitespace-nowrap'>Innovation Lab</div>
           </div>
