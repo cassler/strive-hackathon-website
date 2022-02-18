@@ -1,11 +1,11 @@
 {
 	"recommendations": [
-		"dbaeumer.vscode-eslint",
-		"EditorConfig.EditorConfig",
+    "christian-kohler.npm-intellisense",
+    "dbaeumer.vscode-eslint",
+    "EditorConfig.EditorConfig",
     "bradlc.vscode-tailwindcss",
     "wix.vscode-import-cost",
     "formulahendry.auto-rename-tag",
     "formulahendry.auto-close-tag",
-    "christian-kohler.npm-intellisense"
 	]
 }
