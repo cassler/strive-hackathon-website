@@ -84,9 +84,9 @@ export function MineSweeper() {
           </button>
 
           <div className="flex-0 flex gap-1 items-center justify-center w-auto">
-            <span title="adjust-size" className="text-sm dark:text-white/75 text-black/75 flex-1 mr-1 w-0 overflow-hidden sm:w-auto">Size</span>
-            <button title="decrement" type="button" className="bg-transparent !px-1 text-black dark:text-white" disabled={size < 7} onClick={() => setSize(size - 1)}><MinusCircleIcon className="w-5 h-5" /></button>
-            <button title="increment" type="button" className="bg-transparent !px-1 text-black dark:text-white" onClick={() => setSize(size + 1)}><PlusCircleIcon className="w-5 h-5" /></button>
+            <span title="adjust-size" className="text-sm text-white/75  flex-1 mr-1 w-0 overflow-hidden sm:w-auto">Size</span>
+            <button title="decrease board size" type="button" className="bg-transparent !px-1 ui !bg-transparent hover:scale-125 transition-all duration-200" disabled={size < 7} onClick={() => setSize(size - 1)}><MinusCircleIcon className="w-6 h-6" /></button>
+            <button title="increase board size" type="button" className="bg-transparent !px-1 ui !bg-transparent hover:scale-125 transition-all duration-200" onClick={() => setSize(size + 1)}><PlusCircleIcon className="w-6 h-6" /></button>
             <button title="newgame" onClick={handleNewGame} className="ui ml-1" type="button">
               <div>New Game</div>
             </button>
