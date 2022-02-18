@@ -15,44 +15,30 @@ interface RenderButtonPropsWithOnClick extends RenderButtonProps {
   onClick: React.MouseEventHandler<HTMLButtonElement>
   disabled?: boolean
 }
-type MenuTuples = [string, React.FunctionComponent<{ className: string }>];
 
-const defaultItems:MenuTuples[] = [
-  ['Timers', ClipboardCopyIcon],
-  ['Profile', ArchiveIcon],
-  ['Settings', ArchiveIcon],
-];
-
-type Props = {
-  items?: MenuTuples[]
-};
-
-export default function ThumbMenu({ items }: Props) {
-  const initialText = 'Launcher';
-  const [current, setCurrent] = useState(initialText);
-
+export default function ThumbMenu() {
+  const { bonus, toggleBonus } = useContext(BonusContext);
   const { isAuthenticated, logout, loginWithRedirect, user, isLoading } = useAuth0();
-  const list:MenuTuples[] = items || defaultItems;
   const { darkMode, toggle } = useDarkMode();
-  function getClass(active:boolean) {
-      const textStyle = active ? 'bg-brand-500 text-white' : 'text-gray-900';
-      const baseStyle = 'group flex rounded-md items-center w-full px-2 py-2 text-sm disabled:text-gray-400 focus:text-black';
-      return [textStyle, baseStyle].join(' ');
-    }
-  const RenderButton = React.memo(({ onClick, text, Icon, disabled = false }:RenderButtonPropsWithOnClick) => {
 
+  function getClass(active:boolean) {
+    const textStyle = active ? 'bg-brand-500 disabled:bg-transparent text-white disabled:text-gray-700/50' : 'text-gray-900';
+    const baseStyle = 'group flex rounded-md items-center w-full px-2 py-2 text-sm disabled:text-gray-700/50 focus:text-black';
+    return [textStyle, baseStyle].join(' ');
+  }
+
+  const RenderButton = React.memo(({ onClick, text, Icon, disabled = false }:RenderButtonPropsWithOnClick) => {
     return (
       <Menu.Item>
         {({ active }) => (
           <button type="button" onClick={onClick} disabled={disabled} className={getClass(active)}>
-            <Icon className="w-5 h-5 mr-2  group-hover:text-white group-hover:disabled:text-gray-400" />
+            <Icon className="w-5 h-5 mr-2" />
             {text}
           </button>
         )}
       </Menu.Item>
     );
   });
-
 
   function handleLoginLogout() {
     if (isLoading) return;
@@ -63,7 +49,7 @@ export default function ThumbMenu({ items }: Props) {
 
     }
   }
-  const { bonus, toggleBonus } = useContext(BonusContext);
+
   return (
     <Menu as="nav" className="relative inline-flex text-left text-gray-900 w-auto">
       <Menu.Button className="flex ui">
@@ -94,12 +80,11 @@ export default function ThumbMenu({ items }: Props) {
       >
         <Menu.Items className="App-menu-items absolute right-0 bottom-10 origin-bottom-right">
           <div className="px-1 py-1 ">
-
             <RenderButton disabled onClick={() => {}} text='Timers' Icon={ClockIcon} />
             <RenderButton disabled={!isAuthenticated} onClick={() => toggleBonus(!bonus)} text='Easter Eggs' Icon={QuestionMarkCircleIcon} />
           </div>
           <div className="px-1 py-1">
-              <RenderButton onClick={() => toggle(!darkMode)} text={darkMode ? 'Dark Theme' : 'Light Theme'} Icon={darkMode ? MoonIcon : SunIcon} />
+            <RenderButton onClick={() => toggle(!darkMode)} text={darkMode ? 'Dark Theme' : 'Light Theme'} Icon={darkMode ? MoonIcon : SunIcon} />
             {isAuthenticated && (
               <RenderButton onClick={() => logout({ returnTo: window.location.origin })} text='Logout' Icon={LogoutIcon} />
             )}
@@ -110,6 +95,3 @@ export default function ThumbMenu({ items }: Props) {
     </Menu>
   );
 }
-ThumbMenu.defaultProps = {
-  items: defaultItems,
-};
