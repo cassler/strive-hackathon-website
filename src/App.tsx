@@ -24,7 +24,7 @@ function App() {
     >
     <BonusContext.Provider value={{bonus, toggleBonus}}>
       <Layout>
-        <button className="text-sm mb-12 text-white/50 uppercase tracking-widest" type="button" onClick={() => toggleBonus(!bonus)}>June 2022</button>
+        <button className="text-sm text-white/50 uppercase tracking-widest" type="button" onClick={() => toggleBonus(!bonus)}>June 2022</button>
         {bonus ? <MineSweeper /> : <CallToAction />}
       </Layout>
     </BonusContext.Provider>

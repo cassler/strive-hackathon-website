@@ -9,14 +9,19 @@
     @apply bg-red-300;
   }
   button.ms-item {
-    @apply w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 ;
-    @apply sm:text-lg lg:text-xl rounded font-light;
+    @apply w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10;
+    @apply sm:text-lg lg:text-xl rounded font-semibold;
     @apply shadow bg-white/25;
+    @apply items-center text-center justify-center flex;
     @apply transition-all duration-500 ease-in-out;
 
     &.close {
-      @apply text-transparent hover:bg-white/25;
+      @apply text-transparent hover:bg-white/40;
       @apply hover:scale-110 hover:shadow-lg;
+    }
+
+    &.flagged {
+      @apply dark:text-white text-black;
     }
 
     &.open {
@@ -25,10 +30,10 @@
       @apply bg-white/5;
       &.count-0 { @apply text-white/10 }
       &.count-1 { @apply text-white/60 bg-orange-300/10 }
-      &.count-2 { @apply text-white/75 bg-orange-300/20 }
-      &.count-3 { @apply text-white bg-orange-400/20 }
-      &.count-4 { @apply text-orange-200 bg-orange-500/20 }
-      &.count-5 { @apply text-orange-300 bg-orange-600/20 }
+      &.count-2 { @apply text-white/75 bg-orange-400/20 }
+      &.count-3 { @apply text-white bg-orange-500/30 }
+      &.count-4 { @apply text-orange-200 bg-orange-500/40 }
+      &.count-5 { @apply text-orange-300 bg-orange-600/40 }
     }
 
   }

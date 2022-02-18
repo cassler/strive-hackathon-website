@@ -1,9 +1,10 @@
-import {
+import React, {
   useContext, useMemo, useState, createContext, useEffect, CSSProperties,
 } from 'react';
-import { MinusCircleIcon, PlusCircleIcon } from '@heroicons/react/solid';
+import { FlagIcon, MinusCircleIcon, PlusCircleIcon, QuestionMarkCircleIcon } from '@heroicons/react/solid';
 import { Dialog } from '@headlessui/react';
 import { BoardContextType, BoardPosition, useMineSweeper } from './useMinesweeper';
+import { BonusContext } from '../App';
 
 export const BoardContext = createContext<BoardContextType>({
   board: [],
@@ -69,9 +70,11 @@ export function MineSweeper() {
       </Dialog.Description>
     </div>
   )
+
+  const { bonus, toggleBonus } = useContext(BonusContext);
   return (
     <BoardContext.Provider value={ctx}>
-      <div title="toolbar" className="App-header max-w-[100%] w-screen justify-between mt-2 top-0">
+      <div title="toolbar" className="App-header absolute max-w-[100%] w-screen justify-between mt-2 top-0">
         <div title="current-score flex-1 text-4xl">
           {`${flippedItems.length} / ${size * size}`}
         </div>
@@ -103,24 +106,38 @@ export function Item({
   idx, count, bomb, xAxis, yAxis,
 }: ItemProps) {
   const { flippedItems, selectItem } = useContext(BoardContext);
+  const [flagged, setFlagged] = useState(false);
   const isOpen = flippedItems.includes(idx);
+
   const content = bomb ? 'X' : count;
 
   function handleClick(e:React.MouseEvent) {
-    if (e.type === 'contextmenu') {
-      e.preventDefault();
-    } else {
-      selectItem(idx);
-    }
+    if (flagged) return;
+    selectItem(idx);
   }
+  function handleFlag(e:React.MouseEvent) {
+    e.preventDefault();
+    if (isOpen) return;
+    setFlagged(!flagged)
+  }
+
+  useEffect(() => {
+    // reset flag locally if the game restarts
+    if (flippedItems.length === 0) { setFlagged(false) }
+  }, [flippedItems])
   return (
     <button
       title={`x${xAxis}y${yAxis}`}
-      className={`ms-item ${isOpen ? 'open' : 'close'} ${bomb ? 'bomb' : `count-${count}`}`}
+      className={`ms-item ${isOpen ? 'open' : 'close'} ${flagged ? 'flagged' : ''} ${bomb ? 'bomb' : `count-${count}`}`}
       type="button"
+      onContextMenu={handleFlag}
       onClick={handleClick}
     >
-      <span>{isOpen && content}</span>
+      {!isOpen && flagged ? (
+        <QuestionMarkCircleIcon className='h-6 w-6'/>
+      ) : (
+        <span>{isOpen && content}</span>
+      )}
     </button>
   );
 }
