@@ -1,7 +1,6 @@
 import { Auth0Provider } from '@auth0/auth0-react'
 import { createContext, useState } from 'react'
 import { AppHeader } from './Layout'
-import logo from './logo.svg'
 import { MineSweeper } from './MineSweeper'
 import './styles/tailwind.css'
 

@@ -13,15 +13,15 @@
 
 ### Folder Structure
 
-```
-strive-hackathon-website
-|   `postcss.config.js`
-|   `tailwind.config.js`
-|   `vite.config.ts`
-|   `tsconfig.json`
-|   `tsconfig.node.json`
-└─── /src
-|   └─── /styles
-|   └─── /assets
-|   └─── /components
-```
+### Configuration Files
+- `postcss.config.js`
+- `tailwind.config.js`
+- `vite.config.ts`
+- `tsconfig.json`
+- `tsconfig.node.json`
+
+### Directories
+
+- `src/styles`
+- `src/assets`
+- `src/lib`
