@@ -19,7 +19,7 @@ function App() {
   return (
      <Auth0Provider
       domain="cassler.auth0.com"
-      clientId={import.meta.env.VITE_AUTH0_CLIENTID as string}
+      clientId={import.meta.env.VITE_AUTH0_CLIENTID as string || ''}
       redirectUri={window.location.origin}
     >
     <BonusContext.Provider value={{bonus, toggleBonus}}>
