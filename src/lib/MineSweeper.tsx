@@ -72,28 +72,28 @@ export function MineSweeper() {
 
   return (
     <BoardContext.Provider value={ctx}>
-      <div title="toolbar" className="App-header absolute max-w-[100%] w-screen justify-between mt-2 top-0">
-        <div title="current-score flex-1 items-center justify-center text-4xl text-black dark:text-white">
-          <div className='flex justify-baseline items-center gap-2'>
-            <div>Score</div>
-            <div className='text-3xl w-12 text-center'>{ctx.ctx.flippedItems.length} </div>
-            <div className='text-xs opacity-75'>of {ctx.size * ctx.size}</div>
+      <div title="toolbar" className="App-header mt-2 top-0">
+        <div className='container flex justify-between'>
+          <div title="current-score flex-1 items-center justify-center text-4xl text-black dark:text-white">
+            <div className='flex justify-baseline items-center'>
+              <div className='text-2xl sm:text-4xl w-[72px] text-left font-bold tracking-tighter'>{ctx.ctx.flippedItems.length + 234} </div>
+              <div className='text-xs w-0 overflow-hidden sm:w-auto opacity-75'>of {ctx.size * ctx.size}</div>
+            </div>
           </div>
 
-        </div>
-        <div className="flex-0 flex gap-2 items-center justify-center w-auto">
-          <span title="adjust-size" className="text-sm text-white/50 flex-1">Size</span>
-          <button title="decrement" type="button" className="ui" disabled={size < 7} onClick={() => setSize(size - 1)}><MinusCircleIcon className="w-5 h-5" /></button>
-          <button title="increment" type="button" className="ui" onClick={() => setSize(size + 1)}><PlusCircleIcon className="w-5 h-5" /></button>
-          <button title="newgame" onClick={handleNewGame} className="ui" type="button">
-            <div>New Game</div>
-          </button>
+          <div className="flex-0 flex gap-1 items-center justify-center w-auto">
+            <span title="adjust-size" className="text-sm text-white/50 flex-1 mr-1 w-0 overflow-hidden sm:w-auto">Size</span>
+            <button title="decrement" type="button" className="ui !bg-transparent !px-1 !opacity-50" disabled={size < 7} onClick={() => setSize(size - 1)}><MinusCircleIcon className="w-5 h-5" /></button>
+            <button title="increment" type="button" className="ui !bg-transparent !px-1 !opacity-50" onClick={() => setSize(size + 1)}><PlusCircleIcon className="w-5 h-5" /></button>
+            <button title="newgame" onClick={handleNewGame} className="ui ml-1" type="button">
+              <div>New Game</div>
+            </button>
+          </div>
         </div>
       </div>
       <div className="minesweeper-board mb-4 gap-1 sm:gap-2" style={getGridStyle(size)}>
         {board.map((pos, idx) => <Item idx={idx} key={idx.toString()} {...pos} />)}
       </div>
-      {JSON.stringify(ctx.flippedItems)}
       <Dialog
         open={ctx.status === 'lost'}
         onClose={() => ctx.handleNewGame()}
