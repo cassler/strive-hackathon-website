@@ -27,7 +27,7 @@ function App() {
 export default App
 
 
-function CallToAction({children}:React.PropsWithChildren<{}>) {
+function CallToAction() {
   const { bonus, toggleBonus } = useContext(BonusContext);
   return (
     <>
