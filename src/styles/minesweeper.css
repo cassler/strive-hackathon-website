@@ -25,6 +25,7 @@
 
     &.flagged {
       @apply dark:text-white text-black;
+      @apply animate-pulse;
     }
 
     &.open {
