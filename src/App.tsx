@@ -1,7 +1,8 @@
 import { Auth0Provider } from '@auth0/auth0-react'
 import { createContext, useState } from 'react'
-import { AppHeader } from './Layout'
-import { MineSweeper } from './MineSweeper'
+import { AppHeader } from './lib/Layout'
+import { MineSweeper } from './lib/MineSweeper'
+import './styles/minesweeper.css';
 import './styles/tailwind.css'
 
 export const BonusContext = createContext<{

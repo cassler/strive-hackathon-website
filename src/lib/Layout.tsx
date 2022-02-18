@@ -2,8 +2,8 @@ import { useMemo } from 'react';
 import { MoonIcon, SunIcon } from '@heroicons/react/solid';
 import { useDarkMode } from './use-dark';
 import DropdownMenu from './DropdownMenu';
-import logoUrl from './assets/logo.png';
-import lightLogo from './assets/logo_light.png';
+import logoUrl from '../assets/logo.png';
+import lightLogo from '../assets/logo_light.png';
 
 export function AppHeader() {
   const { darkMode, toggle } = useDarkMode();

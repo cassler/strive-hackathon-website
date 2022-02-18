@@ -19,9 +19,11 @@
 - `vite.config.ts`
 - `tsconfig.json`
 - `tsconfig.node.json`
+- `jest.config.js`
 
 ### Directories
 
 - `src/styles`
 - `src/assets`
 - `src/lib`
+- `src/__test__`
