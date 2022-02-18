@@ -78,15 +78,15 @@ export function MineSweeper() {
         <div className='container flex justify-between'>
           <button title="current-score flex-1 items-center justify-center text-4xl text-black dark:text-white" onClick={() => toggleBonus(!bonus)} >
             <div className='flex justify-baseline items-center'>
-              <div className='text-2xl sm:text-4xl w-[72px] text-left font-bold tracking-tighter'>{ctx.ctx.flippedItems.length + 234} </div>
+              <div className='text-2xl sm:text-4xl w-[72px] text-left font-bold tracking-tighter'>{ctx.ctx.flippedItems.length} </div>
               <div className='text-xs w-0 overflow-hidden sm:w-auto opacity-75'>of {ctx.size * ctx.size}</div>
             </div>
           </button>
 
           <div className="flex-0 flex gap-1 items-center justify-center w-auto">
-            <span title="adjust-size" className="text-sm text-white/50 flex-1 mr-1 w-0 overflow-hidden sm:w-auto">Size</span>
-            <button title="decrement" type="button" className="ui !bg-transparent !px-1 !opacity-50" disabled={size < 7} onClick={() => setSize(size - 1)}><MinusCircleIcon className="w-5 h-5" /></button>
-            <button title="increment" type="button" className="ui !bg-transparent !px-1 !opacity-50" onClick={() => setSize(size + 1)}><PlusCircleIcon className="w-5 h-5" /></button>
+            <span title="adjust-size" className="text-sm dark:text-white/75 text-black/75 flex-1 mr-1 w-0 overflow-hidden sm:w-auto">Size</span>
+            <button title="decrement" type="button" className="bg-transparent !px-1 text-black dark:text-white" disabled={size < 7} onClick={() => setSize(size - 1)}><MinusCircleIcon className="w-5 h-5" /></button>
+            <button title="increment" type="button" className="bg-transparent !px-1 text-black dark:text-white" onClick={() => setSize(size + 1)}><PlusCircleIcon className="w-5 h-5" /></button>
             <button title="newgame" onClick={handleNewGame} className="ui ml-1" type="button">
               <div>New Game</div>
             </button>
