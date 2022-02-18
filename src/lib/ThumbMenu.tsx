@@ -5,7 +5,7 @@ import {
   ArchiveIcon, ClipboardCopyIcon, ChevronUpIcon, UserIcon, ArrowCircleRightIcon, LogoutIcon, MoonIcon, SunIcon, QuestionMarkCircleIcon, ClockIcon,
 } from '@heroicons/react/solid';
 import useDarkMode from './useDark';
-import { BonusContext } from '../App';
+import { BonusContext } from './AppContext';
 
 interface RenderButtonProps {
   text: string,

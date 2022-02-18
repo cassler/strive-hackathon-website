@@ -5,14 +5,8 @@ import { tagline } from '../package.json';
 import { MineSweeper } from './lib/MineSweeper'
 import './styles/minesweeper.css';
 import './styles/tailwind.css'
+import { BonusContext } from './lib/AppContext';
 
-export const BonusContext = createContext<{
-  bonus: boolean,
-  toggleBonus: Function
-}>({
-  bonus: false,
-  toggleBonus: () => {}
-})
 
 function App() {
   const [bonus, toggleBonus] = useState(false);

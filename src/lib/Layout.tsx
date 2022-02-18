@@ -4,7 +4,7 @@ import { useDarkMode } from './useDark';
 import ThumbMenu from './ThumbMenu';
 import logoUrl from '../assets/logo.png';
 import lightLogo from '../assets/logo_light.png';
-import { BonusContext } from '../App';
+import { BonusContext } from './AppContext';
 
 export function AppHeader({className = ''}: {className:string}) {
   const { darkMode, toggle } = useDarkMode();
