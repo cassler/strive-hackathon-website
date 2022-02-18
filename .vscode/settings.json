@@ -1,0 +1,14 @@
+{
+  "window.title": "${separator} ${rootName} 🗂 ${separator} ${activeEditorMedium}",
+  "window.titleSeparator": " ✪   ",
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#028AC2",
+    "titleBar.activeForeground": "#ffffffff",
+    "titleBar.inactiveBackground": "#028AC2",
+    "titleBar.inactiveForeground": "#ffffff99",
+    "*": {
+      "titleBar.activeBackground": "#028AC2",
+      "titleBar.activeForeground": "#ffffff"
+    }
+  },
+}
