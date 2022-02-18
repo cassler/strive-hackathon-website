@@ -4,6 +4,7 @@ import React, {
 import { FlagIcon, MinusCircleIcon, PlusCircleIcon, QuestionMarkCircleIcon } from '@heroicons/react/solid';
 import { Dialog } from '@headlessui/react';
 import { BoardContextType, BoardPosition, useMineSweeper } from './useMinesweeper';
+import { BonusContext } from '../App';
 
 export const BoardContext = createContext<BoardContextType>({
   board: [],
@@ -13,6 +14,7 @@ export const BoardContext = createContext<BoardContextType>({
 
 export function MineSweeper() {
   const ctx = useMineSweeper(12);
+  const { bonus, toggleBonus } = useContext(BonusContext);
   const {
     flippedItems, size, setSize, handleNewGame, board, getGridStyle,
   } = ctx;
@@ -72,14 +74,14 @@ export function MineSweeper() {
 
   return (
     <BoardContext.Provider value={ctx}>
-      <div title="toolbar" className="App-header mt-2 top-0">
+      <div title="toolbar" className="App-header mt-1 top-0">
         <div className='container flex justify-between'>
-          <div title="current-score flex-1 items-center justify-center text-4xl text-black dark:text-white">
+          <button title="current-score flex-1 items-center justify-center text-4xl text-black dark:text-white" onClick={() => toggleBonus(!bonus)} >
             <div className='flex justify-baseline items-center'>
               <div className='text-2xl sm:text-4xl w-[72px] text-left font-bold tracking-tighter'>{ctx.ctx.flippedItems.length + 234} </div>
               <div className='text-xs w-0 overflow-hidden sm:w-auto opacity-75'>of {ctx.size * ctx.size}</div>
             </div>
-          </div>
+          </button>
 
           <div className="flex-0 flex gap-1 items-center justify-center w-auto">
             <span title="adjust-size" className="text-sm text-white/50 flex-1 mr-1 w-0 overflow-hidden sm:w-auto">Size</span>
@@ -91,7 +93,7 @@ export function MineSweeper() {
           </div>
         </div>
       </div>
-      <div className="minesweeper-board mb-4 gap-1 sm:gap-2" style={getGridStyle(size)}>
+      <div className="minesweeper-board gap-1 -translate-y-8 sm:-translate-y-0 sm:gap-2" style={getGridStyle(size)}>
         {board.map((pos, idx) => <Item idx={idx} key={idx.toString()} {...pos} />)}
       </div>
       <Dialog

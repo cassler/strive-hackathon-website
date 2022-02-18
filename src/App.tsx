@@ -1,5 +1,5 @@
 import { Auth0Provider } from '@auth0/auth0-react'
-import React, { createContext, useState } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 import { Layout } from './lib/Layout'
 import { tagline } from '../package.json';
 import { MineSweeper } from './lib/MineSweeper'
@@ -24,7 +24,6 @@ function App() {
     >
     <BonusContext.Provider value={{bonus, toggleBonus}}>
       <Layout>
-        <button className="text-sm text-white/50 uppercase tracking-widest" type="button" onClick={() => toggleBonus(!bonus)}>June 2022</button>
         {bonus ? <MineSweeper /> : <CallToAction />}
       </Layout>
     </BonusContext.Provider>
@@ -36,10 +35,14 @@ export default App
 
 
 function CallToAction({children}:React.PropsWithChildren<{}>) {
+  const { bonus, toggleBonus } = useContext(BonusContext);
   return (
-    <div className="call-to-action">
-         The world is your <span className='border-b-8 border-brand-orange'>canvas</span>.
-    </div>
+    <>
+      <button className="text-sm text-white/50 uppercase tracking-widest" type="button" onClick={() => toggleBonus(!bonus)}>June 2022</button>
+      <div className="call-to-action">
+          The world is your <span className='border-b-8 border-brand-orange'>canvas</span>.
+      </div>
+    </>
   )
 }
 

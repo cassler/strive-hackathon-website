@@ -7,6 +7,8 @@
 @layer components {
   body {
     @apply bg-white;
+    @apply overflow-hidden;
+    @apply h-[100%];
     @apply text-black dark:text-white;
     @apply dark:bg-gray-800 dark:text-white;
   }
@@ -48,16 +50,16 @@
   }
 
   .App-container {
-    @apply border-blue-500 border-8;
+    @apply border-blue-500 border-t-8;
     @apply justify-center items-center text-center;
-    @apply min-h-screen gap-4;
+    @apply gap-4 h-screen;
     @apply flex flex-col;
   }
 
 
   .App-menu-items {
     @apply z-10 w-40;
-    @apply bg-white/50 backdrop-blur-sm divide-y divide-white/25;
+    @apply bg-white/75 backdrop-blur-sm divide-y divide-white/25;
     @apply rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none;;
   }
 

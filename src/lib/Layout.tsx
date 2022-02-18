@@ -43,7 +43,7 @@ export function Layout({children}:React.PropsWithChildren<{}>) {
       <main className={`App-container ${bonus ? 'electric-dream' : ''}`}>
         {children}
       </main>
-      <AppHeader className='App-header' />
+      <AppHeader className='App-header -mb-2' />
     </div>
   )
 }

@@ -53,7 +53,7 @@ export default function ThumbMenu() {
   return (
     <Menu as="nav" className="relative inline-flex text-left text-gray-900 w-auto">
       <Menu.Button className="flex ui">
-        <div className="flex-1 text-left flex-nowrap">
+        <div className="flex-1 text-left flex-nowrap focus:shadow-inner">
           {isLoading ? 'Loading...' : (
             <span>{`${user?.name ? user.name : 'Guest'}`}</span>
           )}
