@@ -1,18 +1,17 @@
+import { useContext, useState } from 'react'
 import { Auth0Provider } from '@auth0/auth0-react'
-import React, { createContext, useContext, useState } from 'react'
-import { Layout } from './lib/Layout'
-import { tagline } from '../package.json';
+import { BonusContext } from './lib/AppContext';
 import { MineSweeper } from './lib/MineSweeper'
+import { Layout } from './lib/Layout'
 import './styles/minesweeper.css';
 import './styles/tailwind.css'
-import { BonusContext } from './lib/AppContext';
 
 
 function App() {
   const [bonus, toggleBonus] = useState(false);
   return (
      <Auth0Provider
-      domain="cassler.auth0.com"
+      domain={import.meta.env.VITE_AUTH0_DOMAIN as string || ''}
       clientId={import.meta.env.VITE_AUTH0_CLIENTID as string || ''}
       redirectUri={window.location.origin}
     >

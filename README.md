@@ -28,4 +28,4 @@ Tailwind is preconfigured to provide color mappings for Strive brand colors with
 
 The app is preconfigured with user access and authentication using Auth0.
 
-To enable, simply provide your Auth0 ClientID through the environment variable `VITE_AUTH0_CLIENTID`.
+To enable, simply provide your Auth0 ClientID and domain through the environment variable `VITE_AUTH0_CLIENTID` and `VITE_AUTH0_DOMAIN`.
