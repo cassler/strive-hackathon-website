@@ -4,7 +4,6 @@ import React, {
 import { FlagIcon, MinusCircleIcon, PlusCircleIcon, QuestionMarkCircleIcon } from '@heroicons/react/solid';
 import { Dialog } from '@headlessui/react';
 import { BoardContextType, BoardPosition, useMineSweeper } from './useMinesweeper';
-import { BonusContext } from '../App';
 
 export const BoardContext = createContext<BoardContextType>({
   board: [],
@@ -71,7 +70,6 @@ export function MineSweeper() {
     </div>
   )
 
-  const { bonus, toggleBonus } = useContext(BonusContext);
   return (
     <BoardContext.Provider value={ctx}>
       <div title="toolbar" className="App-header absolute max-w-[100%] w-screen justify-between mt-2 top-0">
