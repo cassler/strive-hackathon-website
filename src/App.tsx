@@ -1,6 +1,7 @@
 import { Auth0Provider } from '@auth0/auth0-react'
-import { createContext, useState } from 'react'
-import { AppHeader } from './lib/Layout'
+import React, { createContext, useState } from 'react'
+import { Layout } from './lib/Layout'
+import { tagline } from '../package.json';
 import { MineSweeper } from './lib/MineSweeper'
 import './styles/minesweeper.css';
 import './styles/tailwind.css'
@@ -14,7 +15,6 @@ export const BonusContext = createContext<{
 })
 
 function App() {
-  const [count, setCount] = useState(0)
   const [bonus, toggleBonus] = useState(false);
   return (
      <Auth0Provider
@@ -23,20 +23,23 @@ function App() {
       redirectUri={window.location.origin}
     >
     <BonusContext.Provider value={{bonus, toggleBonus}}>
-    <div className="min-h-screen dark:from-brand-300 dark:to-brand-900 from-brand-400 to-brand-100 bg-gradient-to-bl transition-all duration-250">
-      <AppHeader />
-      <main className="border-blue-500 border-8 justify-center items-center text-center min-h-screen flex flex-col">
+      <Layout>
         <button className="text-sm mb-12 text-white/50 uppercase tracking-widest" type="button" onClick={() => toggleBonus(!bonus)}>June 2022</button>
-          {bonus ? (
-            <MineSweeper />
-          ) : (
-            <div className="transition-all duration-500 text-[40px] leading-[36px] sm:text-[72px] sm:leading-[60px] lg:text-[96px] lg:leading-[72px] max-w-md tracking-tighter font-serif text-center">The world is your canvas.</div>
-          )}
-      </main>
-    </div>
+        {bonus ? <MineSweeper /> : <CallToAction />}
+      </Layout>
     </BonusContext.Provider>
     </Auth0Provider>
   )
 }
 
 export default App
+
+
+function CallToAction({children}:React.PropsWithChildren<{}>) {
+  return (
+    <div className="call-to-action">
+         The world is your <span className='border-b-8 border-brand-orange'>canvas</span>.
+    </div>
+  )
+}
+

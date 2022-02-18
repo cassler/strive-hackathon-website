@@ -2,13 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-button.ui {
-  @apply justify-center w-auto items-center;
-  @apply text-sm font-medium text-white bg-black rounded-md;
-  @apply bg-opacity-20 hover:bg-opacity-30;
-  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75;
-  @apply px-2 py-2 sm:px-4 sm:py-2;
-}
+
 
 @layer components {
   body {
@@ -23,37 +17,49 @@ button.ui {
     @apply tracking-widest;
     @apply leading-relaxed;
   }
-}
 
-/* Within the components layer can be extended with tw styles */
-
-.App-logo {
-  height: 40px;
-  pointer-events: none;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@media (prefers-blueuced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  button.ui {
+    @apply justify-center w-auto items-center;
+    @apply text-sm font-medium text-white bg-black rounded-md;
+    @apply bg-opacity-20 hover:bg-opacity-30;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75;
+    @apply px-2 py-2 sm:px-4 sm:py-2;
   }
-}
 
+  .call-to-action {
+    @apply transition-all duration-500;
+    @apply text-[40px] leading-[36px] sm:text-[72px] sm:leading-[60px];
+    @apply lg:text-[96px] lg:leading-[72px];
+    @apply max-w-md;
+    @apply tracking-tighter font-serif text-center;
+  }
 
-@layer components {
+  .App-backdrop {
+
+    @apply min-h-screen;
+    @apply dark:from-brand-300 dark:to-brand-900;
+    @apply from-brand-400 to-brand-100;
+    @apply bg-gradient-to-bl;
+    @apply transition-all duration-200;
+  }
+
+  .electric-dream {
+    animation: hueCycle 60s linear infinite;
+  }
+
+  .App-container {
+    @apply border-blue-500 border-8;
+    @apply justify-center items-center text-center;
+    @apply min-h-screen;
+    @apply flex flex-col;
+  }
 
 
   .App-menu-items {
     @apply z-10 w-40;
-    @apply bg-white/50 backdrop-blur-md divide-y divide-white/25;
+    @apply bg-white/50 backdrop-blur-sm divide-y divide-white/25;
     @apply rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none;;
   }
-
-
 
   .App-header {
     @apply flex items-center justify-center;
@@ -65,19 +71,20 @@ button.ui {
     @apply max-w-[100%] w-full;
 
 
-    h2 {
-      @apply text-xl font-normal;
-     div { @apply -mb-4 }
-    span {
-        @apply font-semibold text-xs tracking-tight flex-nowrap whitespace-nowrap mr-8;
-
-      }
+    h2 { @apply text-xl font-normal; }
+    h2 div { @apply -mb-4 }
+    h2 span {
+      @apply font-semibold text-xs tracking-tight;
+      @apply flex-nowrap whitespace-nowrap mr-8;
     }
-
-
   }
-  .App-header
-  .App-logo {
-    @apply w-10;
+}
+
+@keyframes hueCycle {
+  from {
+    backdrop-filter: hue-rotate(0deg);
+  }
+  to {
+    backdrop-filter: hue-rotate(360deg);
   }
 }

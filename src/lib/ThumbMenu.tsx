@@ -4,7 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import {
   ArchiveIcon, ClipboardCopyIcon, ChevronUpIcon, UserIcon, ArrowCircleRightIcon, LogoutIcon, MoonIcon, SunIcon, QuestionMarkCircleIcon, ClockIcon,
 } from '@heroicons/react/solid';
-import useDarkMode from './use-dark';
+import useDarkMode from './useDark';
 import { BonusContext } from '../App';
 
 interface RenderButtonProps {
@@ -27,7 +27,7 @@ type Props = {
   items?: MenuTuples[]
 };
 
-export default function DropdownMenu({ items }: Props) {
+export default function ThumbMenu({ items }: Props) {
   const initialText = 'Launcher';
   const [current, setCurrent] = useState(initialText);
 
@@ -110,6 +110,6 @@ export default function DropdownMenu({ items }: Props) {
     </Menu>
   );
 }
-DropdownMenu.defaultProps = {
+ThumbMenu.defaultProps = {
   items: defaultItems,
 };
