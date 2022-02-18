@@ -5,19 +5,23 @@
 
 
 @layer components {
-  .minesweeper {
-    @apply bg-red-300;
-  }
+
   button.ms-item {
     @apply w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10;
     @apply sm:text-lg lg:text-xl rounded font-semibold;
-    @apply shadow bg-white/25;
     @apply items-center text-center justify-center flex;
     @apply transition-all duration-500 ease-in-out;
+    @apply shadow;
+    @apply mix-blend-overlay;
+    @apply bg-white/30;
+    @apply transition-all duration-200 shadow-black/25;
+    /* @apply dark:from-white/5 dark:to-white/10 bg-gradient-to-b; */
+
 
     &.close {
-      @apply text-transparent hover:bg-white/40;
-      @apply hover:scale-110 hover:shadow-lg;
+      @apply text-transparent;
+      @apply hover:scale-110 hover:shadow-lg hover:shadow-black/20;
+      @apply from-brand-50/25 to-brand-300/25;
     }
 
     &.flagged {
@@ -25,13 +29,13 @@
     }
 
     &.open {
+      @apply bg-gray-200/10 shadow-black/10;
       @apply cursor-default;
-      @apply text-white;
-      @apply bg-white/5;
-      &.count-0 { @apply text-white/10 }
+      @apply text-black dark:text-white;
+      &.count-0 { @apply text-transparent }
       &.count-1 { @apply text-white/60 bg-orange-300/10 }
       &.count-2 { @apply text-white/75 bg-orange-400/20 }
-      &.count-3 { @apply text-white bg-orange-500/30 }
+      &.count-3 { @apply text-white dark:text-white bg-orange-500/30 }
       &.count-4 { @apply text-orange-200 bg-orange-500/40 }
       &.count-5 { @apply text-orange-300 bg-orange-600/40 }
     }

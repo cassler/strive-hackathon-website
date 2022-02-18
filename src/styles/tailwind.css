@@ -37,8 +37,8 @@
   .App-backdrop {
 
     @apply min-h-screen;
-    @apply dark:from-brand-300 dark:to-brand-900;
-    @apply from-brand-500 via-brand-300 to-brand-100;
+    @apply dark:from-brand-800 dark:via-brand-700 dark:to-brand-500;
+    @apply from-brand-500 via-brand-400 to-brand-200;
     @apply bg-gradient-to-bl;
     @apply transition-all duration-200;
   }
