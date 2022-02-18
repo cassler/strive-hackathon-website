@@ -7,7 +7,7 @@
 @layer components {
   body {
     @apply bg-white;
-    @apply text-gray-500;
+    @apply text-black dark:text-white;
     @apply dark:bg-gray-800 dark:text-white;
   }
   h4 {

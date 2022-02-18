@@ -12,7 +12,6 @@
     @apply items-center text-center justify-center flex;
     @apply transition-all duration-500 ease-in-out;
     @apply shadow;
-    @apply mix-blend-overlay;
     @apply bg-white/30;
     @apply transition-all duration-200 shadow-black/25;
     /* @apply dark:from-white/5 dark:to-white/10 bg-gradient-to-b; */
