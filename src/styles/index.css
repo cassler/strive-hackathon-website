@@ -1,3 +1,8 @@
+/**
+ * This file is loaded immediately and will handle styles until our app is ready. Do not style
+ * the app itself from this file, use `tailwind.css` or a relevant component.css instead.
+ **/
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +10,15 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #fff;
+  color: black;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  body   { background:  #333; color: white; }
 }
