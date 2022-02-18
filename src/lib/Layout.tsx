@@ -40,10 +40,10 @@ export function Layout({children}:React.PropsWithChildren<{}>) {
   const {bonus} = useContext(BonusContext);
   return (
     <div className={`App-backdrop`}>
-      <AppHeader className='App-header' />
       <main className={`App-container ${bonus ? 'electric-dream' : ''}`}>
         {children}
       </main>
+      <AppHeader className='App-header' />
     </div>
   )
 }
