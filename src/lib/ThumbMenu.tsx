@@ -17,9 +17,9 @@ interface RenderButtonPropsWithOnClick extends RenderButtonProps {
 }
 
 export default function ThumbMenu() {
-  const { bonus, toggleBonus } = useContext(BonusContext);
+  const { bonus, toggleBonus, darkMode, toggle } = useContext(BonusContext);
   const { isAuthenticated, logout, loginWithRedirect, user, isLoading } = useAuth0();
-  const { darkMode, toggle } = useDarkMode();
+
 
   function getClass(active:boolean) {
     const textStyle = active ? 'bg-brand-500 disabled:bg-transparent text-white disabled:text-gray-700/50' : 'text-gray-900';

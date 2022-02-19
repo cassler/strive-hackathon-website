@@ -39,10 +39,11 @@
   .App-backdrop {
     @apply h-screen w-screen fixed;
     @apply min-h-screen;
-    @apply dark:from-brand-800 dark:via-brand-700 dark:to-brand-500;
-    @apply from-brand-500 via-brand-400 to-brand-200;
+    @apply from-brand-800 via-brand-800 to-brand-600;
+    @apply dark:from-brand-900 dark:via-brand-800 dark:to-brand-500;
     @apply bg-gradient-to-bl;
     @apply transition-all duration-200;
+    @apply brightness-200 dark:brightness-100;
   }
 
   .electric-dream {

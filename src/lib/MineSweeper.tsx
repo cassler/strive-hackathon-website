@@ -5,6 +5,7 @@ import { FlagIcon, MinusCircleIcon, PlusCircleIcon, QuestionMarkCircleIcon } fro
 import { Dialog, Transition } from '@headlessui/react';
 import { BoardContextType, BoardPosition, useMineSweeper } from './useMinesweeper';
 import { BonusContext } from './AppContext';
+import Animate from './Animate';
 
 export const BoardContext = createContext<BoardContextType>({
   board: [],
@@ -74,16 +75,7 @@ export function MineSweeper({active = false}: {active: boolean}) {
   return (
 
     <BoardContext.Provider value={ctx}>
-      <Transition
-        as={Fragment}
-        show={active}
-        enter="transition ease-out duration-500"
-        enterFrom="transform opacity-0 scale-90 -translate-y-32"
-        enterTo="transform opacity-100 scale-100"
-        leave="transition ease-in duration-500"
-        leaveFrom="transform opacity-100 scale-100"
-        leaveTo="transform opacity-0 scale-90 -translate-y-32"
-      >
+      <Animate show={active} preset="slideDown">
       <div title="toolbar" className="App-header mt-1 top-0">
         <div className='container flex justify-between'>
           <button title="current-score flex-1 items-center justify-center text-4xl text-black dark:text-white" onClick={() => toggleBonus(!bonus)} >
@@ -103,21 +95,12 @@ export function MineSweeper({active = false}: {active: boolean}) {
           </div>
         </div>
       </div>
-      </Transition>
-      <Transition
-        as={Fragment}
-        show={active}
-        enter="transition ease-out duration-500"
-        enterFrom="transform opacity-0 scale-75 -translate-y-64"
-        enterTo="transform opacity-100 scale-100"
-        leave="transition ease-in duration-500"
-        leaveFrom="transform opacity-100 scale-100"
-        leaveTo="transform opacity-0 scale-75 -translate-y-64"
-      >
-      <div className="minesweeper-board gap-1 sm:gap-2" style={getGridStyle(size)}>
-        {board.map((pos, idx) => <Item idx={idx} key={idx.toString()} {...pos} />)}
-      </div>
-      </Transition>
+      </Animate>
+      <Animate show={active} preset="slideDownBig">
+        <div className="minesweeper-board gap-1 sm:gap-2" style={getGridStyle(size)}>
+          {board.map((pos, idx) => <Item idx={idx} key={idx.toString()} {...pos} />)}
+        </div>
+      </Animate>
       <Transition
         as={Fragment}
         show={ctx.status === 'lost'}

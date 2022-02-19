@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo, useRef } from 'react';
+import { createRef, useContext, useEffect, useMemo, useRef } from 'react';
 import { MoonIcon, SunIcon } from '@heroicons/react/solid';
 import { useDarkMode } from './useDark';
 import ThumbMenu from './ThumbMenu';
@@ -9,24 +9,32 @@ import createGlobe from "cobe";
 
 
 export function AppHeader({className = ''}: {className:string}) {
-  const { darkMode, toggle } = useDarkMode();
-  const Logo = () => useMemo(() => (
-    <div><img src={darkMode ? lightLogo : logoUrl} className='h-8 w-auto translate-y-1 opacity-90'/></div>
-  ), [darkMode, toggle])
+  const { darkMode, toggle } = useContext(BonusContext);
+  const imageUrl = useRef(lightLogo);
+
+  // const imageUrl = darkMode ? lightLogo : logoUrl;
+
+  useEffect(() => {
+    if (imageUrl.current) {
+      imageUrl.current = darkMode ? lightLogo : logoUrl;
+    }
+  }, [darkMode, toggle])
 
   return (
     <header className={className}>
       <div className="container flex">
-        <a href="https://striveconsulting.com/" target="_blank" className="flex-1 pb-1.5">
+        <div className='flex-1'>
+        <a href="https://striveconsulting.com/" target="_blank" className="flex pb-1.5">
           <div className='flex items-center gap-2 hover:-translate-y-1 transition-all duration-250'>
-          <Logo />
+          <div><img src={darkMode ? lightLogo : logoUrl} className='h-8 w-auto translate-y-1 opacity-90'/></div>
           <div className='flex flex-col items-left text-left justify-center -space-y-2 text-black/75 dark:text-white/90 dark:hover:text-white'>
             <div className='text-2xl font-normal'>strive</div>
             <div className='font-semibold text-xs tracking-tighter flex-nowrap whitespace-nowrap'>Innovation Lab</div>
           </div>
           </div>
         </a>
-        <nav className="items-center flex gap-2">
+        </div>
+        <nav className="flex gap-2">
           <button onClick={() => toggle(!darkMode)} type="button" className="flex-1 ui !bg-transparent">
             {darkMode ? <MoonIcon className="w-5 h-5 text-white" /> : <SunIcon className="w-5 h-5 text-white" />}
           </button>
@@ -39,23 +47,39 @@ export function AppHeader({className = ''}: {className:string}) {
 
 
 export function Layout({children}:React.PropsWithChildren<{}>) {
+  const {bonus} = useContext(BonusContext);
+  return (
+      <div className={`App-backdrop`}>
+      <main className={`App-container fixed top-0 bottom-0 left-0 right-0 ${bonus ? 'electric-dream' : ''}`}>
+        {children}
+      </main>
+      <DrawGlobe />
+      <AppHeader className='App-header -mb-2' />
+    </div>
+  )
+}
+
+export default { Layout, AppHeader };
+
+
+
+function DrawGlobe() {
   const {bonus, toggleBonus} = useContext(BonusContext);
   const canvasRef = useRef(null);
-  const { darkMode, toggle } = useDarkMode()
   useEffect(() => {
     let phi = 0;
     const globe = createGlobe(canvasRef.current, {
       devicePixelRatio: 2,
-      width: 700 * 2,
-      height: 700 * 2,
+      width: 1200 * 2,
+      height: 1200 * 2,
       phi: 220,
       theta: 0.4,
       dark: true,
       diffuse: 0.3,
-      mapSamples: 32000,
+      mapSamples: 64000,
       mapBrightness: 1,
       baseColor: [1,1,1],
-      markerColor: [0.5,0.5,1],
+      markerColor: [1,1,1],
       glowColor: [1, 1, 1],
       markers: [
         // longitude latitude
@@ -74,22 +98,21 @@ export function Layout({children}:React.PropsWithChildren<{}>) {
     return () => {
       globe.destroy();
     };
-  }, [darkMode, toggle]);
+  }, []);
+
   return (
-      <div className={`App-backdrop`}>
-      <main className={`App-container fixed top-0 bottom-0 left-0 right-0 ${bonus ? 'electric-dream' : ''}`}>
-        {children}
-      </main>
-      <span className={`absolute mix-blend-soft-light opacity-30 bottom-0 left-0 right-0 transition-all duration-1000 items-center justify-center ease-in-out flex w-screen ${bonus ? 'pointer-events-none translate-y-32 scale-150' : '-translate-y-16 scale-100'}`} onClick={() => toggleBonus(!bonus)}>
-        <div className={`transition-all duration-1000 ease-in-out ${bonus ? 'scale-110 translate-y-64 sm:translate-y-72 md:translate-y-96' : '-translate-y-16 scale-100'}`}>
-          <canvas ref={canvasRef} className='transition-all duration-1000 ease-in-out w-[700px] h-[700px] scale-100 sm:scale-125 md:scale-150' />
-        </div>
-      </span>
-      <AppHeader className='App-header -mb-2' />
-    </div>
+    <span
+      onClick={() => toggleBonus(!bonus)}
+      className={`
+        absolute mix-blend-soft-light opacity-30
+        bottom-0 left-0 right-0 top-0
+        transition-all duration-1000
+        items-center
+        justify-center flex w-screen
+        ${bonus ? 'pointer-events-none ease-out scale-150 translate-y-[50%]' : 'scale-100 ease-in'}
+      `}
+    >
+    <canvas ref={canvasRef} className='w-[1200px] h-[1200px] scale-100 sm:scale-110 md:scale-125' />
+  </span>
   )
 }
-
-export default { Layout, AppHeader };
-
-

@@ -6,16 +6,18 @@ import { Layout } from './lib/Layout'
 import './styles/minesweeper.css';
 import './styles/tailwind.css'
 import { Transition } from '@headlessui/react';
+import useDarkMode from './lib/useDark';
 
 function App() {
   const [bonus, toggleBonus] = useState(false);
+  const { darkMode, toggle} = useDarkMode();
   return (
      <Auth0Provider
       domain={import.meta.env.VITE_AUTH0_DOMAIN as string || ''}
       clientId={import.meta.env.VITE_AUTH0_CLIENTID as string || ''}
       redirectUri={window.location.origin}
     >
-    <BonusContext.Provider value={{bonus, toggleBonus}}>
+    <BonusContext.Provider value={{bonus, toggleBonus, darkMode, toggle}}>
       <Layout>
         <div className={`absolute top-32 left-0 right-0 w-screen flex items-center justify-center h-[75%]`}><MineSweeper active={bonus} /></div>
         <Transition
@@ -45,17 +47,3 @@ function App() {
 }
 
 export default App
-
-
-function CallToAction() {
-  const { bonus, toggleBonus } = useContext(BonusContext);
-  return (
-    <div>
-      <button className="text-sm text-white/50 uppercase tracking-widest" type="button" onClick={() => toggleBonus(!bonus)}>June 2022</button>
-      <div className="call-to-action">
-          The world is your <span className='border-b-8 border-brand-orange'>canvas</span>.
-      </div>
-    </div>
-  )
-}
-
