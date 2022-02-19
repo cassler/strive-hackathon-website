@@ -41,7 +41,7 @@ export function AppHeader({className = ''}: {className:string}) {
 export function Layout({children}:React.PropsWithChildren<{}>) {
   const {bonus, toggleBonus} = useContext(BonusContext);
   const canvasRef = useRef(null);
-  const { darkMode } = useDarkMode()
+  const { darkMode, toggle } = useDarkMode()
   useEffect(() => {
     let phi = 0;
     const globe = createGlobe(canvasRef.current, {
@@ -49,44 +49,42 @@ export function Layout({children}:React.PropsWithChildren<{}>) {
       width: 700 * 2,
       height: 700 * 2,
       phi: 220,
-      theta: 1.3,
-      dark: false,
-      diffuse: 1,
-      mapSamples: 16000,
-      mapBrightness: 1.2,
-      baseColor: [1, 1, 255],
-      markerColor: [0, 0, 0],
-      glowColor: [0.5, 0.5, 1],
+      theta: 0.4,
+      dark: true,
+      diffuse: 0.3,
+      mapSamples: 32000,
+      mapBrightness: 1,
+      baseColor: [1,1,1],
+      markerColor: [0.5,0.5,1],
+      glowColor: [1, 1, 1],
       markers: [
         // longitude latitude
-        { location: [41.8781136, -87.6297982], size: 0.1 },
-        { location: [33.753746, -84.386330], size: 0.1 },
-        { location: [32.779167, -96.808891], size: 0.1 },
+        { location: [41.8781136, -87.6297982], size: 0.09 },
+        { location: [33.753746, -84.386330], size: 0.07 },
+        { location: [32.779167, -96.808891], size: 0.05 },
       ],
       onRender: (state:any) => {
         // Called on every animation frame.
         // `state` will be an empty object, return updated params.
         state.phi = phi;
-        phi += 0.00025;
+        phi += 0.0003;
       }
     });
 
     return () => {
       globe.destroy();
     };
-  }, [darkMode]);
+  }, [darkMode, toggle]);
   return (
-    <div className={`App-backdrop`}>
-      <button className={`bottom-0 left-0 right-0 transition-all duration-1000 items-center justify-center ease-in-out flex w-screen fixed ${bonus ? 'opacity-25 translate-y-32 scale-150' : 'opacity-25 -translate-y-16 scale-100'}`} onClick={() => toggleBonus(!bonus)}>
-        <div className={`transition-all duration-1000 ease-in-out ${bonus ? 'scale-110 translate-y-64 sm:translate-y-72 md:translate-y-96' : '-translate-y-8 scale-100'}`}>
-          <canvas ref={canvasRef} className='transition-all duration-1000 ease-in-out w-[700px] h-[700px] scale-100 sm:scale-125 md:scale-150' />
-        </div>
-      </button>
-      <main className={`App-container ${bonus ? 'electric-dream' : ''}`}>
-
+      <div className={`App-backdrop`}>
+      <main className={`App-container fixed top-0 bottom-0 left-0 right-0 ${bonus ? 'electric-dream' : ''}`}>
         {children}
       </main>
-
+      <span className={`absolute mix-blend-soft-light opacity-30 bottom-0 left-0 right-0 transition-all duration-1000 items-center justify-center ease-in-out flex w-screen ${bonus ? 'pointer-events-none translate-y-32 scale-150' : '-translate-y-16 scale-100'}`} onClick={() => toggleBonus(!bonus)}>
+        <div className={`transition-all duration-1000 ease-in-out ${bonus ? 'scale-110 translate-y-64 sm:translate-y-72 md:translate-y-96' : '-translate-y-16 scale-100'}`}>
+          <canvas ref={canvasRef} className='transition-all duration-1000 ease-in-out w-[700px] h-[700px] scale-100 sm:scale-125 md:scale-150' />
+        </div>
+      </span>
       <AppHeader className='App-header -mb-2' />
     </div>
   )
