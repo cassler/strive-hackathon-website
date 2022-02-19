@@ -1,13 +1,28 @@
-import { useContext, useMemo } from 'react';
+import { useContext, useEffect, useMemo } from 'react';
 import { MoonIcon, SunIcon } from '@heroicons/react/solid';
 import { useDarkMode } from './useDark';
 import ThumbMenu from './ThumbMenu';
 import logoUrl from '../assets/logo.png';
 import lightLogo from '../assets/logo_light.png';
 import { BonusContext } from './AppContext';
+import ReactGA from 'react-ga';
+import { useAuth0 } from '@auth0/auth0-react';
 
 export function AppHeader({className = ''}: {className:string}) {
   const { darkMode, toggle } = useDarkMode();
+  const { user, isLoading } = useAuth0();
+  useEffect(() => {
+    ReactGA.initialize(import.meta.env.VITE_ANALYTICS_ID as string, {
+      debug: true,
+    });
+    ReactGA.pageview('/')
+  }, [])
+
+  useEffect(() => {
+    if ( isLoading ) return
+    ReactGA.set({ userId: user?.sub })
+  }, [user])
+
   const Logo = () => useMemo(() => (
     <div><img src={darkMode ? lightLogo : logoUrl} className='h-8 w-auto translate-y-1 opacity-90'/></div>
   ), [darkMode, toggle])
@@ -38,6 +53,13 @@ export function AppHeader({className = ''}: {className:string}) {
 
 export function Layout({children}:React.PropsWithChildren<{}>) {
   const {bonus} = useContext(BonusContext);
+
+  useEffect(() => {
+    ReactGA.event({
+      category: 'Easter Egg',
+      action: 'Toggle Mode',
+    })
+  }, [bonus])
   return (
     <div className={`App-backdrop`}>
       <main className={`App-container ${bonus ? 'electric-dream' : ''}`}>
