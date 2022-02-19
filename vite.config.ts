@@ -19,7 +19,6 @@ export default defineConfig({
         extend(),
         nesting(),
         tailwindcss(),
-        // autoprefixer(),
         apply(),
         postcssimport()
       ],
