@@ -108,20 +108,20 @@ export function MineSweeper({active = false}: {active: boolean}) {
         as={Fragment}
         show={active}
         enter="transition ease-out duration-500"
-        enterFrom="transform opacity-0 scale-75"
+        enterFrom="transform opacity-0 scale-75 -translate-y-64"
         enterTo="transform opacity-100 scale-100"
         leave="transition ease-in duration-500"
         leaveFrom="transform opacity-100 scale-100"
-        leaveTo="transform opacity-0 scale-75"
+        leaveTo="transform opacity-0 scale-75 -translate-y-64"
       >
-      <div className="minesweeper-board gap-1 -translate-y-8 sm:-translate-y-0 sm:gap-2" style={getGridStyle(size)}>
+      <div className="minesweeper-board gap-1 sm:gap-2" style={getGridStyle(size)}>
         {board.map((pos, idx) => <Item idx={idx} key={idx.toString()} {...pos} />)}
       </div>
       </Transition>
       <Transition
         as={Fragment}
         show={ctx.status === 'lost'}
-        enter="transition ease-out duration-250"
+        enter="transition ease-out duration-500"
         enterFrom="transform opacity-0 scale-0"
         enterTo="transform opacity-100 scale-100"
         leave="transition ease-in duration-250"
@@ -131,7 +131,7 @@ export function MineSweeper({active = false}: {active: boolean}) {
       <Dialog
         open={ctx.status === 'lost'}
         onClose={() => ctx.handleNewGame()}
-        className="animate-fadeIn fixed z-10 inset-0 overflow-y-auto flex items-center justify-center"
+        className="fixed z-10 inset-0 overflow-y-auto flex items-center justify-center"
       >
         <GameOverScreen />
       </Dialog>

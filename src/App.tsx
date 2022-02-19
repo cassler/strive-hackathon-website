@@ -17,16 +17,16 @@ function App() {
     >
     <BonusContext.Provider value={{bonus, toggleBonus}}>
       <Layout>
-        <div className={`${bonus ? 'h-[75%]' : 'h-0'} transition-all duration-1000 ease-in-out absolute top-32 left-0 right-0 w-screen flex items-center justify-center h-[75%]`}><MineSweeper active={bonus} /></div>
+        <div className={`absolute top-32 left-0 right-0 w-screen flex items-center justify-center h-[75%]`}><MineSweeper active={bonus} /></div>
         <Transition
           as={Fragment}
           show={!bonus}
-          enter="transition ease-out duration-500"
-          enterFrom="transform opacity-0 scale-75 translate-y-32"
+          enter="transition ease-in duration-500"
+          enterFrom="transform opacity-0 scale-75 translate-y-64"
           enterTo="transform opacity-100 scale-100"
-          leave="transition ease-in duration-250"
+          leave="transition ease-out duration-500"
           leaveFrom="transform opacity-100 scale-100"
-          leaveTo="transform opacity-0 scale-75 translate-y-32"
+          leaveTo="transform opacity-0 scale-75 translate-y-64"
         >
         <div>
           <button className="text-sm text-white/50 uppercase tracking-widest" type="button" onClick={() => toggleBonus(!bonus)}>June 2022</button>
