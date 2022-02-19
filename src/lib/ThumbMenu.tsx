@@ -51,20 +51,20 @@ export default function ThumbMenu() {
   }
 
   return (
-    <Menu as="nav" className="relative inline-flex text-left text-gray-900 w-auto">
-      <Menu.Button className="flex ui">
-        <div className="flex-1 text-left flex-nowrap focus:shadow-inner pl-2">
+    <Menu as="nav" className="relative inline-block text-left text-gray-900  w-auto rounded-lg">
+      <Menu.Button className="flex ui !outline-none !px-1">
+        <span className="flex-1 text-left flex-nowrap pl-1.5 ">
           {isLoading ? 'Loading...' : (
-            <span>{`${user?.name ? user.name : 'Guest'}`}</span>
+            <div className='text-ellipsis overflow-hidden max-w-[126px]'>{`${user?.name ? user.name : 'Guest'}`}</div>
           )}
-        </div>
+        </span>
         {isLoading ? (
           <ArrowCircleRightIcon
-          className="w-5 h-5 ml-2 mr-1 text-black dark:text-white flex-0"
+          className="w-5 h-5  text-black dark:text-white flex-0"
           aria-hidden="true" />
         ) : (
           <ChevronUpIcon
-            className="w-5 h-5 ml-2 mr-1 text-black dark:text-white flex-0"
+            className="w-5 h-5  text-black dark:text-white flex-0"
             aria-hidden="true"
           />
         )}

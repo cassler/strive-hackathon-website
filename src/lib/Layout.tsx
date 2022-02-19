@@ -24,8 +24,8 @@ export function AppHeader({className = ''}: {className:string}) {
       <div className="container flex">
         <div className='flex-0 hover:-translate-y-1 transition-all duration-250'>
         <a href="https://striveconsulting.com/" target="_blank" className="flex pb-1.5 pr-2">
-          <div className='flex items-center gap-2 '>
-          <div><img src={darkMode ? lightLogo : logoUrl} className='h-8 w-auto translate-y-1 opacity-90'/></div>
+          <div className='flex items-center gap-2 flex-shrink-0'>
+          <div><img src={darkMode ? lightLogo : logoUrl} className='h-8 w-8 translate-y-1 opacity-90'/></div>
           <div className='flex flex-col items-left text-left justify-center -space-y-2 text-black/75 dark:text-white/90 dark:hover:text-white'>
             <div className='text-2xl font-normal'>strive</div>
             <div className='font-semibold text-xs tracking-tighter flex-nowrap whitespace-nowrap'>Innovation Lab</div>
@@ -33,7 +33,7 @@ export function AppHeader({className = ''}: {className:string}) {
           </div>
         </a>
         </div>
-        <nav className="flex flex-1 justify-end items-center gap-2">
+        <nav className="flex flex-1 justify-end items-center">
           <button onClick={() => toggle(!darkMode)} type="button" className="ui !bg-transparent">
             {darkMode ? <MoonIcon className="w-5 h-5 dark:text-white text-black/90 transition-all duration-250 ease-in-out" /> : <SunIcon className="w-5 h-5  transition-all duration-250 ease-in-outdark:text-white text-black/90" />}
           </button>
