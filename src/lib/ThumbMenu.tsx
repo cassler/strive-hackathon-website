@@ -55,7 +55,7 @@ export default function ThumbMenu() {
       <Menu.Button className="flex ui !outline-none !px-1">
         <span className="flex-1 text-left flex-nowrap pl-1.5 ">
           {isLoading ? 'Loading...' : (
-            <div className='text-ellipsis overflow-hidden max-w-[126px]'>{`${user?.name ? user.name : 'Guest'}`}</div>
+            <div className='text-ellipsis overflow-hidden pr-1 max-w-[126px]'>{`${user?.name ? user.name : 'Guest'}`}</div>
           )}
         </span>
         {isLoading ? (
