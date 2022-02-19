@@ -10,22 +10,13 @@ import createGlobe from "cobe";
 
 export function AppHeader({className = ''}: {className:string}) {
   const { darkMode, toggle } = useContext(BonusContext);
-  const imageUrl = useRef(lightLogo);
-
-  // const imageUrl = darkMode ? lightLogo : logoUrl;
-
-  useEffect(() => {
-    if (imageUrl.current) {
-      imageUrl.current = darkMode ? lightLogo : logoUrl;
-    }
-  }, [darkMode, toggle])
 
   return (
     <header className={className}>
       <div className="container flex">
-        <div className='flex-1'>
-        <a href="https://striveconsulting.com/" target="_blank" className="flex pb-1.5">
-          <div className='flex items-center gap-2 hover:-translate-y-1 transition-all duration-250'>
+        <div className='flex-0 hover:-translate-y-1 transition-all duration-250'>
+        <a href="https://striveconsulting.com/" target="_blank" className="flex pb-1.5 pr-2">
+          <div className='flex items-center gap-2 '>
           <div><img src={darkMode ? lightLogo : logoUrl} className='h-8 w-auto translate-y-1 opacity-90'/></div>
           <div className='flex flex-col items-left text-left justify-center -space-y-2 text-black/75 dark:text-white/90 dark:hover:text-white'>
             <div className='text-2xl font-normal'>strive</div>
@@ -34,9 +25,9 @@ export function AppHeader({className = ''}: {className:string}) {
           </div>
         </a>
         </div>
-        <nav className="flex gap-2">
-          <button onClick={() => toggle(!darkMode)} type="button" className="flex-1 ui !bg-transparent">
-            {darkMode ? <MoonIcon className="w-5 h-5 text-white" /> : <SunIcon className="w-5 h-5 text-white" />}
+        <nav className="flex flex-1 justify-end gap-2">
+          <button onClick={() => toggle(!darkMode)} type="button" className="ui !bg-transparent">
+            {darkMode ? <MoonIcon className="w-5 h-5 dark:text-white text-black/90 transition-all duration-250 ease-in-out" /> : <SunIcon className="w-5 h-5  transition-all duration-250 ease-in-outdark:text-white text-black/90" />}
           </button>
           <ThumbMenu />
         </nav>
@@ -104,12 +95,13 @@ function DrawGlobe() {
     <span
       onClick={() => toggleBonus(!bonus)}
       className={`
+        globe
         absolute mix-blend-soft-light opacity-30
         bottom-0 left-0 right-0 top-0
         transition-all duration-1000
         items-center
         justify-center flex w-screen
-        ${bonus ? 'pointer-events-none ease-out scale-150 translate-y-[50%]' : 'scale-100 ease-in'}
+        ${bonus ? 'pointer-events-none ease-out scale-150 translate-y-[80%] opacity-10' : 'scale-100 ease-out'}
       `}
     >
     <canvas ref={canvasRef} className='w-[1200px] h-[1200px] scale-100 sm:scale-110 md:scale-125' />

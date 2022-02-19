@@ -43,7 +43,7 @@
     @apply dark:from-brand-900 dark:via-brand-800 dark:to-brand-500;
     @apply bg-gradient-to-bl;
     @apply transition-all duration-200;
-    @apply brightness-200 dark:brightness-100;
+    @apply brightness-150 dark:brightness-100;
   }
 
   .electric-dream {
@@ -55,9 +55,13 @@
     @apply justify-center items-center text-center;
     @apply gap-4 h-screen;
     @apply flex flex-col;
+    @apply brightness-100 dark:brightness-100;
   }
 
+  .globe {
 
+    @apply bg-blend-multiply;
+  }
   .App-menu-items {
     @apply z-10 w-40;
     @apply bg-white/75 backdrop-blur-sm divide-y divide-white/25;
