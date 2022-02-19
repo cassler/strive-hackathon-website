@@ -1,8 +1,8 @@
 import React, {
-  useContext, useMemo, useState, createContext, useEffect, CSSProperties,
+  useContext, useMemo, useState, createContext, useEffect, CSSProperties, Fragment,
 } from 'react';
 import { FlagIcon, MinusCircleIcon, PlusCircleIcon, QuestionMarkCircleIcon } from '@heroicons/react/solid';
-import { Dialog } from '@headlessui/react';
+import { Dialog, Transition } from '@headlessui/react';
 import { BoardContextType, BoardPosition, useMineSweeper } from './useMinesweeper';
 import { BonusContext } from './AppContext';
 
@@ -24,7 +24,8 @@ export function MineSweeper() {
   }
 
   const GameOverScreen = () => (
-    <div className="ring-4 ring-red-500 animate-fadeIn transition-all duration-200 bg-white/90 text-center hover:scale-110 rotate-2 rounded-lg drop-shadow-lg text-black w-[320px] p-8 space-y-2">
+
+    <div className="animate-fadeIn transition-all duration-200 bg-white/90 text-center hover:scale-110 rotate-2 rounded-lg drop-shadow-lg text-black w-[320px] p-8 space-y-2">
       <Dialog.Overlay />
       <Dialog.Title className="text-black space-y-2 justify-center">
         <div className="text-xl font-semibold pb-2">Your score</div>
@@ -73,7 +74,18 @@ export function MineSweeper() {
   )
 
   return (
+
     <BoardContext.Provider value={ctx}>
+      <Transition
+        as={Fragment}
+        show={bonus}
+        enter="transition ease-out duration-500"
+        enterFrom="transform opacity-0 scale-90 -translate-y-32"
+        enterTo="transform opacity-100 scale-100"
+        leave="transition ease-in duration-500"
+        leaveFrom="transform opacity-100 scale-100"
+        leaveTo="transform opacity-0 scale-90 -translate-y-32"
+      >
       <div title="toolbar" className="App-header mt-1 top-0">
         <div className='container flex justify-between'>
           <button title="current-score flex-1 items-center justify-center text-4xl text-black dark:text-white" onClick={() => toggleBonus(!bonus)} >
@@ -93,17 +105,41 @@ export function MineSweeper() {
           </div>
         </div>
       </div>
+      </Transition>
+      <Transition
+        as={Fragment}
+        show={bonus}
+        enter="transition ease-out duration-500"
+        enterFrom="transform opacity-0 scale-75"
+        enterTo="transform opacity-100 scale-100"
+        leave="transition ease-in duration-500"
+        leaveFrom="transform opacity-100 scale-100"
+        leaveTo="transform opacity-0 scale-75"
+      >
       <div className="minesweeper-board gap-1 -translate-y-8 sm:-translate-y-0 sm:gap-2" style={getGridStyle(size)}>
         {board.map((pos, idx) => <Item idx={idx} key={idx.toString()} {...pos} />)}
       </div>
+      </Transition>
+      <Transition
+        as={Fragment}
+        show={ctx.status === 'lost'}
+        enter="transition ease-out duration-500"
+        enterFrom="transform opacity-0 scale-0"
+        enterTo="transform opacity-100 scale-100"
+        leave="transition ease-in duration-500"
+        leaveFrom="transform opacity-100 scale-100"
+        leaveTo="transform opacity-0 scale-0"
+      >
       <Dialog
         open={ctx.status === 'lost'}
         onClose={() => ctx.handleNewGame()}
-        className="animate-fadeIn fixed z-10 inset-0 overflow-y-auto flex items-center justify-center bg-red-500/75"
+        className="animate-fadeIn fixed z-10 inset-0 overflow-y-auto flex items-center justify-center"
       >
         <GameOverScreen />
       </Dialog>
+      </Transition>
     </BoardContext.Provider>
+
   );
 }
 
