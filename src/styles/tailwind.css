@@ -34,23 +34,21 @@
     @apply transition-all duration-500;
     @apply text-[40px] leading-[36px] sm:text-[72px] sm:leading-[60px];
     @apply lg:text-[96px] lg:leading-[72px];
-    @apply max-w-md;
+    @apply max-w-md text-white;
     @apply tracking-tighter font-serif text-center;
   }
 
   .App-backdrop {
     @apply h-screen w-screen fixed;
     @apply min-h-screen;
-    @apply from-brand-800 via-brand-700 to-brand-400;
-    @apply dark:from-brand-900 dark:via-brand-800 dark:to-brand-500;
+    @apply to-brand-800 via-brand-700 from-brand-300;
+    @apply dark:to-brand-900 dark:via-brand-800 dark:from-brand-500;
     @apply bg-gradient-to-bl;
     @apply transition-all duration-200;
     @apply brightness-150 dark:brightness-100;
   }
 
-  .electric-dream {
-    animation: hueCycle 30s linear infinite;
-  }
+
 
   .App-container {
     @apply h-screen w-screen fixed;
@@ -59,10 +57,6 @@
     @apply flex flex-col;
   }
 
-  .globe {
-
-    @apply bg-blend-multiply;
-  }
   .App-menu-items {
     @apply z-10 w-40;
     @apply bg-white/75 backdrop-blur-sm divide-y divide-white/25;

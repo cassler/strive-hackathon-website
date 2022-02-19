@@ -42,26 +42,26 @@ export default function Animate({children, show, unmount = true, appear = false,
       leaveTo: "transform opacity-0 scale-75 -translate-y-64",
     },
     slideDown: {
-      enter: "transition ease-out duration-500",
+      enter: "transition ease-out duration-700 delay-250",
       enterFrom: "transform opacity-0 scale-90 -translate-y-32",
       enterTo: "transform opacity-100 scale-100",
-      leave: "transition ease-in duration-500",
+      leave: "transition ease-in duration-700",
       leaveFrom: "transform opacity-100 scale-100",
       leaveTo: "transform opacity-0 scale-90 -translate-y-32",
     },
     slideDownBig: {
-      enter: "transition ease-in-out duration-500 delay-500",
-      enterFrom: "transform opacity-0 scale-75 -translate-y-[50vh]",
+      enter: "transition ease-in-out duration-1000 delay-500",
+      enterFrom: "transform opacity-0 scale-0 -translate-y-[40vh]",
       enterTo: "transform opacity-100 scale-100",
-      leave: "transition ease-in duration-500",
+      leave: "transition ease-in duration-500 delay-50",
       leaveFrom: "transform opacity-100 scale-100",
-      leaveTo: "transform opacity-0 scale-75 -translate-y-[50vh]",
+      leaveTo: "transform opacity-0 scale-[5] -translate-y-[300vh]",
     },
     shrinkUnder: {
       enter: "transition ease-out duration-500",
-      enterFrom: "transform scale-75 translate-y-0",
+      enterFrom: "transform scale-25 translate-y-0",
       enterTo: "transform scale-150 translate-y-64",
-      leave: "transition ease-in duration-500",
+      leave: "transition ease-in-out duration-500",
       leaveFrom: "transform scale-150 translate-y-64",
       leaveTo: "transform scale-75 translate-y-0",
     },
@@ -72,7 +72,12 @@ export default function Animate({children, show, unmount = true, appear = false,
       ...presetClasses
     },
     fade: {
-      ...presetClasses
+      enter: "transition ease-out duration-700 delay-700",
+      enterFrom: "transform opacity-0 translate-y-16",
+      enterTo: "transform opacity-100",
+      leave: "transition ease-in-out duration-500",
+      leaveFrom: "transform opacity-100",
+      leaveTo: "transform opacity-0 translate-y-16",
     }
   } as AnimatePresets
 

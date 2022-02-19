@@ -34,6 +34,11 @@ module.exports = {
         'brand-green': '#6CA438',
         'brand-green-light': '#A3D55D',
       }),
+      scale: {
+        '25': '0.25',
+        '5': '0.05',
+        '50': '0.5'
+      },
       duration: {
         '2000': '2sec'
       },

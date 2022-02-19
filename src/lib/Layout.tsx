@@ -1,4 +1,4 @@
-import { createRef, useContext, useEffect, useMemo, useRef } from 'react';
+import { createRef, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { MoonIcon, SunIcon } from '@heroicons/react/solid';
 import { useDarkMode } from './useDark';
 import ThumbMenu from './ThumbMenu';
@@ -6,13 +6,21 @@ import logoUrl from '../assets/logo.png';
 import lightLogo from '../assets/logo_light.png';
 import { BonusContext } from './AppContext';
 import createGlobe from "cobe";
+import Animate from './Animate';
 
 
 export function AppHeader({className = ''}: {className:string}) {
   const { darkMode, toggle } = useContext(BonusContext);
+  const [menuOpen, openMenu] = useState(false)
+
+  useEffect(() => {
+    setTimeout(() => openMenu(true), 250)
+  }, [])
+
 
   return (
     <header className={className}>
+    <Animate appear={true} show={menuOpen} preset="fade">
       <div className="container flex">
         <div className='flex-0 hover:-translate-y-1 transition-all duration-250'>
         <a href="https://striveconsulting.com/" target="_blank" className="flex pb-1.5 pr-2">
@@ -32,6 +40,7 @@ export function AppHeader({className = ''}: {className:string}) {
           <ThumbMenu />
         </nav>
       </div>
+    </Animate>
     </header>
   );
 }
@@ -45,6 +54,7 @@ export function Layout({children}:React.PropsWithChildren<{}>) {
         {children}
       </main>
       <DrawGlobe />
+
       <AppHeader className='App-header -mb-2' />
     </div>
   )
@@ -71,7 +81,7 @@ function DrawGlobe() {
       mapBrightness: 1,
       baseColor: [1,1,1],
       markerColor: [1,1,1],
-      glowColor: [1, 1, 1],
+      glowColor: [1,1,1],
       markers: [
         // longitude latitude
         { location: [41.8781136, -87.6297982], size: 0.09 },
@@ -96,13 +106,14 @@ function DrawGlobe() {
       onClick={() => toggleBonus(!bonus)}
       className={`
         globe
-        absolute opacity-25
-        mix-blend-overlay
+        absolute
         left-0 right-0 bottom-0 top-0 origin-center
         transition-all duration-[1800ms] ease-in-out
         items-center
-        justify-center flex w-screen
-        ${bonus ? 'pointer-events-none scale-150 -bottom-[720px] top-[720px] sm:-bottom-[792px] sm:top-792px md:-bottom-[900px] md:top-[900px] -rotate-30' : 'scale-75'}
+        justify-center flex w-screen brightness-75
+        dark:mix-blend-screen mix-blend-screen
+        opacity-25
+        ${bonus ? 'pointer-events-none scale-150 translate-y-[75%] brightness-50' : 'scale-75'}
       `}
     >
     <canvas ref={canvasRef} className={`
