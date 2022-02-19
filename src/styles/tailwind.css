@@ -50,7 +50,7 @@
   }
 
   .App-container {
-    @apply border-blue-500 border-t-8;
+    @apply h-screen;
     @apply justify-center items-center text-center;
     @apply gap-4 h-screen;
     @apply flex flex-col;

@@ -6,7 +6,6 @@ import { Layout } from './lib/Layout'
 import './styles/minesweeper.css';
 import './styles/tailwind.css'
 
-
 function App() {
   const [bonus, toggleBonus] = useState(false);
   return (

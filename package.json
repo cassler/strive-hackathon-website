@@ -12,6 +12,7 @@
     "@auth0/auth0-react": "^1.9.0",
     "@headlessui/react": "^1.4.3",
     "@heroicons/react": "^1.0.5",
+    "cobe": "^0.4.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
