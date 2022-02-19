@@ -5,6 +5,7 @@ import { FlagIcon, MinusCircleIcon, PlusCircleIcon, QuestionMarkCircleIcon } fro
 import { Dialog } from '@headlessui/react';
 import { BoardContextType, BoardPosition, useMineSweeper } from './useMinesweeper';
 import { BonusContext } from './AppContext';
+import ReactGA from 'react-ga';
 
 export const BoardContext = createContext<BoardContextType>({
   board: [],
@@ -20,6 +21,11 @@ export function MineSweeper() {
   } = ctx;
 
   function handleClose() {
+    ReactGA.event({
+      category: 'MineSweeper',
+      action: 'Try Again',
+      label: `${size}x${size}`
+    })
     handleNewGame();
   }
 
@@ -125,6 +131,11 @@ export function Item({
     e.preventDefault();
     if (isOpen) return;
     setFlagged(!flagged)
+    ReactGA.event({
+      category: 'MineSweeper',
+      action: 'Flag Tile',
+      label: `x${xAxis}y${yAxis}`
+    })
   }
 
   useEffect(() => {

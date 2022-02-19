@@ -1,14 +1,22 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Auth0Provider } from '@auth0/auth0-react'
 import { BonusContext } from './lib/AppContext';
 import { MineSweeper } from './lib/MineSweeper'
 import { Layout } from './lib/Layout'
 import './styles/minesweeper.css';
 import './styles/tailwind.css'
-
+import ReactGA from 'react-ga'
 
 function App() {
   const [bonus, toggleBonus] = useState(false);
+  // ReactGA.initialize('G-NNWWWKKE8P', {
+  //   debug: true,
+  //   titleCase: false,
+  //   gaOptions: {
+  //     userId: 123
+  //   }
+  // });
+
   return (
      <Auth0Provider
       domain={import.meta.env.VITE_AUTH0_DOMAIN as string || ''}

@@ -1,5 +1,5 @@
 import { CSSProperties, useEffect, useMemo, useState } from 'react';
-
+import ReactGA from 'react-ga'
 export type BoardPosition = {
   xAxis: number;
   yAxis: number;
@@ -64,13 +64,28 @@ export function useMineSweeper(initialSize: number = 14, initialDifficulty: numb
     setFlippedItems([]);
     setBoard(computeBoardValues());
     setStatus('playing');
+    ReactGA.event({
+      category: 'MineSweeper',
+      action: 'New Game',
+      label: `${size}x${size}`
+    })
   }
 
   function selectItem(idx:number) {
     if (flippedItems.includes(idx)) return;
     const current = board[idx];
+    ReactGA.event({
+      category: 'MineSweeper',
+      action: 'Reveal Tile',
+      label: `x${current.xAxis} y${current.yAxis}`
+    })
     if (current.bomb) {
       setStatus('lost');
+      ReactGA.event({
+        category: 'MineSweeper',
+        action: 'Game Over',
+        label: `x${current.xAxis} y${current.yAxis}`
+      })
       return;
     }
     // this will add the current item to the flippedItems list

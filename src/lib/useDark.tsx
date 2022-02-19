@@ -2,6 +2,7 @@
 // and persisting between sessions with localStorage.
 
 import React from 'react';
+import ReactGA from 'react-ga';
 
 export function useDarkMode() {
   const [darkMode, setDarkMode] = React.useState<boolean>(false);
@@ -13,9 +14,19 @@ export function useDarkMode() {
     if (enable && !hasDarkClass) {
       classList.add('dark');
       localStorage.theme = 'dark';
+      ReactGA.event({
+        category: 'User Setting',
+        action: 'Toggle Theme',
+        label: 'Enable Dark Mode'
+      });
     } else if (!enable && hasDarkClass) {
       classList.remove('dark');
       localStorage.theme = 'light';
+      ReactGA.event({
+        category: 'User Setting',
+        action: 'Toggle Theme',
+        label: 'Disable Dark Mode'
+      });
     }
   };
 

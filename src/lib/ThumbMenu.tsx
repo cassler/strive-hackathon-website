@@ -1,5 +1,6 @@
 import { Menu, Transition } from '@headlessui/react';
-import React, { Fragment, useContext, useState } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
+import ReactGA from 'react-ga';
 import { useAuth0 } from '@auth0/auth0-react';
 import {
   ArchiveIcon, ClipboardCopyIcon, ChevronUpIcon, UserIcon, ArrowCircleRightIcon, LogoutIcon, MoonIcon, SunIcon, QuestionMarkCircleIcon, ClockIcon,
@@ -28,6 +29,13 @@ export default function ThumbMenu() {
   }
 
   const RenderButton = React.memo(({ onClick, text, Icon, disabled = false }:RenderButtonPropsWithOnClick) => {
+    useEffect(() => {
+       ReactGA.event({
+        category: 'Menu Interaction',
+        action: 'Select Item',
+        label: text
+      });
+    }, [onClick])
     return (
       <Menu.Item>
         {({ active }) => (
@@ -44,9 +52,17 @@ export default function ThumbMenu() {
     if (isLoading) return;
     if (!isAuthenticated) {
       loginWithRedirect();
+
+       ReactGA.event({
+        category: 'User Session',
+        action: 'Login Request',
+       })
     } else {
       logout({ returnTo: window.location.origin });
-
+      ReactGA.event({
+        category: 'User Session',
+        action: 'Logout',
+      })
     }
   }
 
