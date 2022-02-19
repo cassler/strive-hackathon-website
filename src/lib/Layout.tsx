@@ -46,10 +46,10 @@ export function Layout({children}:React.PropsWithChildren<{}>) {
     let phi = 0;
     const globe = createGlobe(canvasRef.current, {
       devicePixelRatio: 2,
-      width: 500 * 2,
-      height: 500 * 2,
+      width: 700 * 2,
+      height: 700 * 2,
       phi: 220,
-      theta: 45,
+      theta: 1.3,
       dark: false,
       diffuse: 1,
       mapSamples: 16000,
@@ -77,8 +77,10 @@ export function Layout({children}:React.PropsWithChildren<{}>) {
   }, [darkMode]);
   return (
     <div className={`App-backdrop`}>
-      <button className={`bottom-0 transition-all duration-1000 ease-in-out flex w-screen fixed ${bonus ? 'opacity-10 translate-y-32 scale-110' : 'opacity-25 -translate-y-32 scale-150'}`} onClick={() => toggleBonus(!bonus)}>
-        <canvas ref={canvasRef} className='w-[500px] h-[500px] m-auto scale-100 sm:scale-125 md:scale-150' />
+      <button className={`bottom-0 left-0 right-0 transition-all duration-1000 items-center justify-center ease-in-out flex w-screen fixed ${bonus ? 'opacity-25 translate-y-32 scale-150' : 'opacity-25 -translate-y-16 scale-100'}`} onClick={() => toggleBonus(!bonus)}>
+        <div className={`transition-all duration-1000 ease-in-out ${bonus ? 'scale-110 translate-y-96' : 'scale-100'}`}>
+          <canvas ref={canvasRef} className='w-[700px] h-[700px] scale-100 sm:scale-125 md:scale-150' />
+        </div>
       </button>
       <main className={`App-container ${bonus ? 'electric-dream' : ''}`}>
 
