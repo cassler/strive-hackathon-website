@@ -97,7 +97,7 @@ export function MineSweeper({active = false}: {active: boolean}) {
       </div>
       </Animate>
       <Animate show={active} preset="slideDownBig">
-        <div className="minesweeper-board gap-1 sm:gap-2 mb-32 pt-16" style={getGridStyle(size)}>
+        <div className="minesweeper-board gap-1 sm:gap-2 pb-48 pt-16" style={getGridStyle(size)}>
           {board.map((pos, idx) => <Item idx={idx} key={idx.toString()} {...pos} />)}
         </div>
       </Animate>
