@@ -17,7 +17,7 @@ function App() {
     >
     <BonusContext.Provider value={{bonus, toggleBonus}}>
       <Layout>
-        <div className={`${bonus ? 'h-[75%]' : 'h-0'} transition-all duration-1000 ease-in-out absolute top-32 left-0 right-0 w-screen flex items-center justify-center h-[75%]`}><MineSweeper /></div>
+        <div className={`${bonus ? 'h-[75%]' : 'h-0'} transition-all duration-1000 ease-in-out absolute top-32 left-0 right-0 w-screen flex items-center justify-center h-[75%]`}><MineSweeper active={bonus} /></div>
         <Transition
           as={Fragment}
           show={!bonus}

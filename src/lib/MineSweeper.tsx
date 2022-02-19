@@ -12,7 +12,7 @@ export const BoardContext = createContext<BoardContextType>({
   selectItem: () => {},
 });
 
-export function MineSweeper() {
+export function MineSweeper({active = false}: {active: boolean}) {
   const ctx = useMineSweeper(12);
   const { bonus, toggleBonus } = useContext(BonusContext);
   const {
@@ -25,41 +25,39 @@ export function MineSweeper() {
 
   const GameOverScreen = () => (
 
-    <div className="animate-fadeIn transition-all duration-200 bg-white/90 text-center hover:scale-110 rotate-2 rounded-lg drop-shadow-lg text-black w-[320px] p-8 space-y-2">
+    <div className="transition-all duration-200 bg-white/90 text-center rotate-2 rounded-lg drop-shadow-lg text-black w-[320px] p-8 space-y-2">
       <Dialog.Overlay />
       <Dialog.Title className="text-black space-y-2 justify-center">
         <div className="text-xl font-semibold pb-2">Your score</div>
         <div className="text-black text-[64px]">{flippedItems.length}</div>
       </Dialog.Title>
-      <p className="text-sm leading-2 pt-8 px-2 text-center">
+      <p className="text-sm leading-2 px-2 text-center">
         You only had
         {' '}
         {board.length - flippedItems.length}
         {' '}
-        left to go! There were
-        {' '}
-        {board.filter((i) => i.bomb).length}
-        {' '}
-        bombs, and you found one.
-        {' '}
-        <span className="font-bold">You Lose.</span>
+        left to go!
+      </p>
+      <p className="leading-2 pt-8 text-center">
+        Thanks for playing our game. We make all sorts of neat things at Strive. Maybe we can make something neat for you!
       </p>
       <div title="actions-menu" className="pt-8 flex items-center">
-        <button
+        <a
           type="button"
-          className="
-          py-2 transition-all hover:scale-110 hover:-translate-y-2
+          className=" rounded
+          py-2 transition-all hover:scale-125 hover:-translate-y-1
           duration-300 ease-in-out hover:rotate-2
           px-4 ring ring-purple-700"
           onClick={() => handleClose()}
+          href='https://striveconsulting.com/contact-us/'
+          target='_blank'
         >
-          Good Game
-
-        </button>
+          Contact Sales
+        </a>
         <button
           type="button"
-          className="py-2 transition-all hover:scale-110
-          hover:-translate-y-2 duration-300
+          className="py-2 transition-all hover:scale-125 rounded
+          hover:-translate-y-1 duration-300
           ease-in-out hover:-rotate-2
           bg-purple-500  ring-purple-700 text-white px-4 ring ml-4"
           onClick={() => handleClose()}
@@ -78,7 +76,7 @@ export function MineSweeper() {
     <BoardContext.Provider value={ctx}>
       <Transition
         as={Fragment}
-        show={bonus}
+        show={active}
         enter="transition ease-out duration-500"
         enterFrom="transform opacity-0 scale-90 -translate-y-32"
         enterTo="transform opacity-100 scale-100"
@@ -108,7 +106,7 @@ export function MineSweeper() {
       </Transition>
       <Transition
         as={Fragment}
-        show={bonus}
+        show={active}
         enter="transition ease-out duration-500"
         enterFrom="transform opacity-0 scale-75"
         enterTo="transform opacity-100 scale-100"
@@ -123,10 +121,10 @@ export function MineSweeper() {
       <Transition
         as={Fragment}
         show={ctx.status === 'lost'}
-        enter="transition ease-out duration-500"
+        enter="transition ease-out duration-250"
         enterFrom="transform opacity-0 scale-0"
         enterTo="transform opacity-100 scale-100"
-        leave="transition ease-in duration-500"
+        leave="transition ease-in duration-250"
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-0"
       >
