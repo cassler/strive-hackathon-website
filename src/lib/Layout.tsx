@@ -78,7 +78,7 @@ export function Layout({children}:React.PropsWithChildren<{}>) {
   return (
     <div className={`App-backdrop`}>
       <button className={`bottom-0 left-0 right-0 transition-all duration-1000 items-center justify-center ease-in-out flex w-screen fixed ${bonus ? 'opacity-25 translate-y-32 scale-150' : 'opacity-25 -translate-y-16 scale-100'}`} onClick={() => toggleBonus(!bonus)}>
-        <div className={`transition-all duration-1000 ease-in-out ${bonus ? 'scale-110 translate-y-64 sm:translate-y-72 md:translate-y-96' : 'scale-100'}`}>
+        <div className={`transition-all duration-1000 ease-in-out ${bonus ? 'scale-110 translate-y-64 sm:translate-y-72 md:translate-y-96' : '-translate-y-8 scale-100'}`}>
           <canvas ref={canvasRef} className='transition-all duration-1000 ease-in-out w-[700px] h-[700px] scale-100 sm:scale-125 md:scale-150' />
         </div>
       </button>
