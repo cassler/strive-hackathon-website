@@ -34,12 +34,12 @@
       @apply bg-gray-200/10 shadow-black/10;
       @apply cursor-default;
       @apply text-black dark:text-white;
-      &.count-0 { @apply text-transparent }
+      &.count-0 { @apply text-transparent bg-white/5 opacity-80; }
       &.count-1 { @apply text-white/75 bg-orange-300/10 }
-      &.count-2 { @apply text-white bg-orange-400/20 }
-      &.count-3 { @apply text-white bg-orange-500/30 }
-      &.count-4 { @apply text-white bg-orange-500/40 }
-      &.count-5 { @apply text-white bg-orange-600/40 }
+      &.count-2 { @apply text-white bg-orange-700/20 }
+      &.count-3 { @apply text-white bg-orange-700/30 }
+      &.count-4 { @apply text-white bg-orange-700/40 }
+      &.count-5 { @apply text-white bg-orange-700/50 }
     }
 
   }

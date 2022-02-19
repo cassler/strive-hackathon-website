@@ -53,18 +53,18 @@ export default function ThumbMenu() {
   return (
     <Menu as="nav" className="relative inline-flex text-left text-gray-900 w-auto">
       <Menu.Button className="flex ui">
-        <div className="flex-1 text-left flex-nowrap focus:shadow-inner">
+        <div className="flex-1 text-left flex-nowrap focus:shadow-inner pl-2">
           {isLoading ? 'Loading...' : (
             <span>{`${user?.name ? user.name : 'Guest'}`}</span>
           )}
         </div>
         {isLoading ? (
           <ArrowCircleRightIcon
-          className="w-5 h-5 ml-2 mr-1 text-violet-200 hover:text-violet-100 flex-0"
+          className="w-5 h-5 ml-2 mr-1 text-black dark:text-white flex-0"
           aria-hidden="true" />
         ) : (
           <ChevronUpIcon
-            className="w-5 h-5 ml-2 mr-1 text-violet-200 hover:text-violet-100 flex-0"
+            className="w-5 h-5 ml-2 mr-1 text-black dark:text-white flex-0"
             aria-hidden="true"
           />
         )}

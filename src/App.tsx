@@ -24,11 +24,11 @@ function App() {
           as={Fragment}
           show={!bonus}
           enter="transition ease-in duration-500"
-          enterFrom="transform opacity-0 scale-75 translate-y-64"
+          enterFrom="transform opacity-0 scale-75 translate-y-96"
           enterTo="transform opacity-100 scale-100"
-          leave="transition ease-out duration-500"
+          leave="transition ease-in duration-500"
           leaveFrom="transform opacity-100 scale-100"
-          leaveTo="transform opacity-0 scale-75 translate-y-64"
+          leaveTo="transform opacity-0 scale-75 translate-y-96"
         >
         <div>
           <button className="text-sm text-white/50 uppercase tracking-widest" type="button" onClick={() => toggleBonus(!bonus)}>June 2022</button>

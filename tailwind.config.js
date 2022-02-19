@@ -34,6 +34,13 @@ module.exports = {
         'brand-green': '#6CA438',
         'brand-green-light': '#A3D55D',
       }),
+      duration: {
+        '2000': '2sec'
+      },
+      rotate: {
+        '30': '30deg',
+        '20': '20deg',
+      },
       keyframes: theme => ({
         fadeIn: {
           '0%': { opacity: 0 },

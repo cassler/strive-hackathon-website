@@ -25,7 +25,7 @@ export function AppHeader({className = ''}: {className:string}) {
           </div>
         </a>
         </div>
-        <nav className="flex flex-1 justify-end gap-2">
+        <nav className="flex flex-1 justify-end items-center gap-2">
           <button onClick={() => toggle(!darkMode)} type="button" className="ui !bg-transparent">
             {darkMode ? <MoonIcon className="w-5 h-5 dark:text-white text-black/90 transition-all duration-250 ease-in-out" /> : <SunIcon className="w-5 h-5  transition-all duration-250 ease-in-outdark:text-white text-black/90" />}
           </button>
@@ -55,7 +55,7 @@ export default { Layout, AppHeader };
 
 
 function DrawGlobe() {
-  const {bonus, toggleBonus} = useContext(BonusContext);
+  const {bonus, toggleBonus, darkMode} = useContext(BonusContext);
   const canvasRef = useRef(null);
   useEffect(() => {
     let phi = 0;
@@ -66,8 +66,8 @@ function DrawGlobe() {
       phi: 220,
       theta: 0.4,
       dark: true,
-      diffuse: 0.3,
-      mapSamples: 64000,
+      diffuse: 1.5,
+      mapSamples: 72000,
       mapBrightness: 1,
       baseColor: [1,1,1],
       markerColor: [1,1,1],
@@ -82,7 +82,7 @@ function DrawGlobe() {
         // Called on every animation frame.
         // `state` will be an empty object, return updated params.
         state.phi = phi;
-        phi += 0.0003;
+        phi += 0.00045;
       }
     });
 
@@ -96,15 +96,18 @@ function DrawGlobe() {
       onClick={() => toggleBonus(!bonus)}
       className={`
         globe
-        absolute mix-blend-soft-light opacity-30
-        bottom-0 left-0 right-0 top-0
-        transition-all duration-1000
+        absolute opacity-25
+        mix-blend-overlay
+        left-0 right-0 bottom-0 top-0 origin-center
+        transition-all duration-[1800ms] ease-in-out
         items-center
         justify-center flex w-screen
-        ${bonus ? 'pointer-events-none ease-out scale-150 translate-y-[80%] opacity-10' : 'scale-100 ease-out'}
+        ${bonus ? 'pointer-events-none scale-150 -bottom-[720px] top-[720px] sm:-bottom-[792px] sm:top-792px md:-bottom-[900px] md:top-[900px] -rotate-30' : 'scale-75'}
       `}
     >
-    <canvas ref={canvasRef} className='w-[1200px] h-[1200px] scale-100 sm:scale-110 md:scale-125' />
+    <canvas ref={canvasRef} className={`
+      w-[1200px] h-[1200px] scale-100 sm:scale-110 md:scale-125
+    `} />
   </span>
   )
 }

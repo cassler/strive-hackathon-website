@@ -86,9 +86,9 @@ export function MineSweeper({active = false}: {active: boolean}) {
           </button>
 
           <div className="flex-0 flex gap-1 items-center justify-center w-auto">
-            <span title="adjust-size" className="text-sm text-white/75  flex-1 mr-1 w-0 overflow-hidden sm:w-auto">Size</span>
-            <button title="decrement" type="button" className="!px-1 ui !bg-transparent hover:scale-125 transition-all duration-200" disabled={size < 7} onClick={() => setSize(size - 1)}><MinusCircleIcon className="w-6 h-6" /></button>
-            <button title="increment" type="button" className="!px-1 ui !bg-transparent hover:scale-125 transition-all duration-200" onClick={() => setSize(size + 1)}><PlusCircleIcon className="w-6 h-6" /></button>
+            <span title="adjust-size" className="text-xs opacity-50 flex-1 mr-1 w-0 overflow-hidden sm:w-auto text-black dark:text-white">Size</span>
+            <button title="decrement" type="button" className="!px-1 ui !bg-transparent hover:scale-125 transition-all duration-200 text-black/75 !dark:text-white/90 !dark:hover:text-white" disabled={size < 7} onClick={() => setSize(size - 1)}><MinusCircleIcon className="w-6 h-6" /></button>
+            <button title="increment" type="button" className="!px-1 ui !bg-transparent hover:scale-125 transition-all duration-200 text-black/75 !dark:text-white/90 !dark:hover:text-white" onClick={() => setSize(size + 1)}><PlusCircleIcon className="w-6 h-6" /></button>
             <button title="newgame" onClick={handleNewGame} className="ui ml-1" type="button">
               <div>New Game</div>
             </button>
@@ -97,7 +97,7 @@ export function MineSweeper({active = false}: {active: boolean}) {
       </div>
       </Animate>
       <Animate show={active} preset="slideDownBig">
-        <div className="minesweeper-board gap-1 sm:gap-2" style={getGridStyle(size)}>
+        <div className="minesweeper-board gap-1 sm:gap-2 pb-8" style={getGridStyle(size)}>
           {board.map((pos, idx) => <Item idx={idx} key={idx.toString()} {...pos} />)}
         </div>
       </Animate>
