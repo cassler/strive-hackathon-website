@@ -47,7 +47,7 @@
     @apply dark:to-brand-900 dark:via-brand-800 dark:from-brand-500;
     @apply bg-gradient-to-bl;
     @apply transition-all duration-200;
-    @apply brightness-150 dark:brightness-100;
+    @apply brightness-150 dark:brightness-125;
   }
 
 

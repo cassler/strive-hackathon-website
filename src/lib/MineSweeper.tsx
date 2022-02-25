@@ -1,7 +1,7 @@
 import React, {
   useContext, useMemo, useState, createContext, useEffect, CSSProperties, Fragment,
 } from 'react';
-import { FlagIcon, MinusCircleIcon, PlusCircleIcon, QuestionMarkCircleIcon } from '@heroicons/react/solid';
+import { ArrowCircleLeftIcon, FlagIcon, MinusCircleIcon, PlusCircleIcon, QuestionMarkCircleIcon } from '@heroicons/react/solid';
 import { Dialog, Transition } from '@headlessui/react';
 import { BoardContextType, BoardPosition, useMineSweeper } from './useMinesweeper';
 import { BonusContext } from './AppContext';
@@ -14,7 +14,7 @@ export const BoardContext = createContext<BoardContextType>({
 });
 
 export function MineSweeper({active = false}: {active: boolean}) {
-  const ctx = useMineSweeper(12);
+  const ctx = useMineSweeper(12, 0.14);
   const { bonus, toggleBonus } = useContext(BonusContext);
   const {
     flippedItems, size, setSize, handleNewGame, board, getGridStyle,
@@ -29,38 +29,31 @@ export function MineSweeper({active = false}: {active: boolean}) {
     <div className="transition-all duration-200 bg-white/90 text-center rotate-2 rounded-lg drop-shadow-lg text-black w-[320px] p-8 space-y-2">
       <Dialog.Overlay />
       <Dialog.Title className="text-black space-y-2 justify-center">
-        <div className="text-xl font-semibold pb-2">Your score</div>
-        <div className="text-black text-[64px]">{flippedItems.length}</div>
+        <div className="text-xlfont-semibold">Your score</div>
+        <div className="font-extrabold  text-[64px]">{flippedItems.length}</div>
       </Dialog.Title>
-      <p className="text-sm leading-2 px-2 text-center">
-        You only had
-        {' '}
-        {board.length - flippedItems.length}
-        {' '}
-        left to go!
-      </p>
       <p className="leading-2 pt-8 text-center">
-        Thanks for playing our game. We make all sorts of neat things at Strive. Maybe we can make something neat for you!
+        Thanks for playing!<br /> Strive Consulting make all kinds of neat things - maybe we can make something for you?
       </p>
-      <div title="actions-menu" className="pt-8 flex items-center">
-        <a
+      <div title="actions-menu" className="pt-8 flex justify-center items-center">
+        <a href='https://striveconsulting.com/contact-us/' target='_blank'>
+        <button
           type="button"
           className=" rounded
           py-2 transition-all hover:scale-125 hover:-translate-y-1
           duration-300 ease-in-out hover:rotate-2
-          px-4 ring ring-purple-700"
+          px-4 ring ring-brand-500 bg-brand-500 text-white"
           onClick={() => handleClose()}
-          href='https://striveconsulting.com/contact-us/'
-          target='_blank'
         >
-          Contact Sales
+          Contact Us
+        </button>
         </a>
         <button
           type="button"
           className="py-2 transition-all hover:scale-125 rounded
           hover:-translate-y-1 duration-300
-          ease-in-out hover:-rotate-2
-          bg-purple-500  ring-purple-700 text-white px-4 ring ml-4"
+          ease-in-out hover:-rotate-2 text-white
+          bg-brand3-500 ring-brand3-500 px-4 ring ml-4"
           onClick={() => handleClose()}
         >
           Play Again
@@ -78,14 +71,16 @@ export function MineSweeper({active = false}: {active: boolean}) {
       <Animate show={active} preset="slideDown">
       <div title="toolbar" className="App-header mt-1 top-0">
         <div className='container flex justify-between'>
-          <button title="current-score flex-1 items-center justify-center text-4xl text-black dark:text-white" onClick={() => toggleBonus(!bonus)} >
-            <div className='flex justify-baseline items-center'>
-              <div className='text-2xl sm:text-4xl w-[72px] text-left font-bold tracking-tighter'>{ctx.ctx.flippedItems.length} </div>
+          <button title="decrement" type="button" className="!px-1 ui !bg-transparent hover:scale-125 transition-all duration-200 text-black/75 !dark:text-white/90 !dark:hover:text-white" onClick={() => toggleBonus(!bonus)} ><ArrowCircleLeftIcon className="w-6 h-6" /></button>
+          <button title="current-score flex-0 items-center justify-start text-4xl text-black dark:text-white" onClick={() => toggleBonus(!bonus)} >
+            <div className='flex justify-baseline items-center ml-2'>
+              <div className='text-2xl sm:text-4xl mr-2 text-left font-bold tracking-tighter'>{ctx.ctx.flippedItems.length} </div>
               <div className='text-xs w-0 overflow-hidden sm:w-auto opacity-75'>of {ctx.size * ctx.size}</div>
             </div>
           </button>
-
+          <div className='flex-1' />
           <div className="flex-0 flex gap-1 items-center justify-center w-auto">
+
             <span title="adjust-size" className="text-xs opacity-50 flex-1 mr-1 w-0 overflow-hidden sm:w-auto text-black dark:text-white">Size</span>
             <button title="decrement" type="button" className="!px-1 ui !bg-transparent hover:scale-125 transition-all duration-200 text-black/75 !dark:text-white/90 !dark:hover:text-white" disabled={size < 7} onClick={() => setSize(size - 1)}><MinusCircleIcon className="w-6 h-6" /></button>
             <button title="increment" type="button" className="!px-1 ui !bg-transparent hover:scale-125 transition-all duration-200 text-black/75 !dark:text-white/90 !dark:hover:text-white" onClick={() => setSize(size + 1)}><PlusCircleIcon className="w-6 h-6" /></button>
