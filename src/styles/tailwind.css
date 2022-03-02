@@ -34,6 +34,7 @@
 
   .call-to-action {
     @apply transition-all duration-500;
+    @apply pt-4;
     @apply text-[40px] leading-[36px] sm:text-[72px] sm:leading-[60px];
     @apply lg:text-[96px] lg:leading-[72px];
     @apply max-w-md text-white;

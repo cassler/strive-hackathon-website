@@ -30,9 +30,9 @@ export function MineSweeper({active = false}: {active: boolean}) {
       <Dialog.Overlay />
       <Dialog.Title className="text-black space-y-2 justify-center">
         <div className="text-xlfont-semibold">Your score</div>
-        <div className="font-extrabold  text-[64px]">{flippedItems.length}</div>
+        <div className="font-bold text-[64px]">{flippedItems.length}</div>
       </Dialog.Title>
-      <p className="leading-2 pt-8 text-center">
+      <p className="leading-2 pt-8 text-center font-light">
         Thanks for playing!<br /> Strive Consulting make all kinds of neat things - maybe we can make something for you?
       </p>
       <div title="actions-menu" className="pt-8 flex justify-center items-center">
@@ -68,34 +68,39 @@ export function MineSweeper({active = false}: {active: boolean}) {
   return (
 
     <BoardContext.Provider value={ctx}>
+      {/* minesweeper toolbar */}
       <Animate show={active} preset="slideDown">
-      <div title="toolbar" className="App-header mt-1 top-0">
-        <div className='container flex justify-between'>
-          <button title="decrement" type="button" className="!px-1 ui !bg-transparent hover:scale-125 transition-all duration-200 text-black/75 !dark:text-white/90 !dark:hover:text-white" onClick={() => toggleBonus(!bonus)} ><ArrowCircleLeftIcon className="w-6 h-6" /></button>
-          <button title="current-score flex-0 items-center justify-start text-4xl text-black dark:text-white" onClick={() => toggleBonus(!bonus)} >
-            <div className='flex justify-baseline items-center ml-2'>
-              <div className='text-2xl sm:text-4xl mr-2 text-left font-bold tracking-tighter'>{ctx.ctx.flippedItems.length} </div>
-              <div className='text-xs w-0 overflow-hidden sm:w-auto opacity-75'>of {ctx.size * ctx.size}</div>
-            </div>
-          </button>
-          <div className='flex-1' />
-          <div className="flex-0 flex gap-1 items-center justify-center w-auto">
-
-            <span title="adjust-size" className="text-xs opacity-50 flex-1 mr-1 w-0 overflow-hidden sm:w-auto text-black dark:text-white">Size</span>
-            <button title="decrement" type="button" className="!px-1 ui !bg-transparent hover:scale-125 transition-all duration-200 text-black/75 !dark:text-white/90 !dark:hover:text-white" disabled={size < 7} onClick={() => setSize(size - 1)}><MinusCircleIcon className="w-6 h-6" /></button>
-            <button title="increment" type="button" className="!px-1 ui !bg-transparent hover:scale-125 transition-all duration-200 text-black/75 !dark:text-white/90 !dark:hover:text-white" onClick={() => setSize(size + 1)}><PlusCircleIcon className="w-6 h-6" /></button>
-            <button title="newgame" onClick={handleNewGame} className="ui ml-1" type="button">
-              <div>New Game</div>
+        <div title="toolbar" className="App-header mt-1 top-0">
+          <div className='container flex justify-between'>
+            {/* scoreboard and back button */}
+            <button title="decrement" type="button" className="!px-1 ui !bg-transparent hover:scale-125 transition-all duration-200 text-black/75 !dark:text-white/90 !dark:hover:text-white" onClick={() => toggleBonus(!bonus)} ><ArrowCircleLeftIcon className="w-6 h-6" /></button>
+            <button title="current-score flex-0 items-center justify-start text-4xl text-black dark:text-white" onClick={() => toggleBonus(!bonus)} >
+              <div className='flex justify-baseline items-center ml-2'>
+                <div className='text-2xl sm:text-4xl mr-2 text-left font-bold tracking-tighter'>{ctx.ctx.flippedItems.length} </div>
+                <div className='text-xs w-0 overflow-hidden sm:w-auto opacity-75'>of {ctx.size * ctx.size}</div>
+              </div>
             </button>
+            {/* horizontal spacer */}
+            <div className='flex-1' />
+            {/* game settings */}
+            <div className="flex-0 flex gap-1 items-center justify-center w-auto">
+              <span title="adjust-size" className="text-xs opacity-50 flex-1 mr-1 w-0 overflow-hidden sm:w-auto text-black dark:text-white">Size</span>
+              <button title="decrement" type="button" className="!px-1 ui !bg-transparent hover:scale-125 transition-all duration-200 text-black/75 !dark:text-white/90 !dark:hover:text-white" disabled={size < 7} onClick={() => setSize(size - 1)}><MinusCircleIcon className="w-6 h-6" /></button>
+              <button title="increment" type="button" className="!px-1 ui !bg-transparent hover:scale-125 transition-all duration-200 text-black/75 !dark:text-white/90 !dark:hover:text-white" onClick={() => setSize(size + 1)}><PlusCircleIcon className="w-6 h-6" /></button>
+              <button title="newgame" onClick={handleNewGame} className="ui ml-1" type="button">
+                <div>New Game</div>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
       </Animate>
+      {/* minesweeper game board */}
       <Animate show={active} preset="slideDownBig">
         <div className="minesweeper-board gap-1 sm:gap-2 pb-48 pt-16" style={getGridStyle(size)}>
           {board.map((pos, idx) => <Item idx={idx} key={idx.toString()} {...pos} />)}
         </div>
       </Animate>
+      {/* gameover screen */}
       <Transition
         as={Fragment}
         show={ctx.status === 'lost'}

@@ -1,5 +1,5 @@
 const colors = require('tailwindcss/colors')
-
+const defaultTheme = require('tailwindcss/defaultTheme')
 delete colors.lightBlue;
 delete colors.warmGray;
 delete colors.trueGray;
@@ -25,6 +25,10 @@ module.exports = {
       animation: {
         fadeIn: 'fadeIn 200ms ease-in-out',
         fadeOut: 'fadeOut 200ms ease-in-out',
+      },
+      fontFamily: {
+        sans: ["Gotham SSm A", "Gotham SSm B", ...defaultTheme.fontFamily.sans],
+        serif: ["Archer SSm A", "Archer SSm B", ...defaultTheme.fontFamily.serif]
       },
       colors: ({theme}) => ({
         'brand-orange': '#D7832A',
