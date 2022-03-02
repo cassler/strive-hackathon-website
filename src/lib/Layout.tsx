@@ -27,7 +27,7 @@ export function AppHeader({className = ''}: {className:string}) {
           <div className='flex items-center gap-2 flex-shrink-0'>
           <div><img src={darkMode ? lightLogo : logoUrl} className='h-6 w-6 translate-y-0.5 opacity-90'/></div>
           <div className='flex flex-col items-left text-left justify-center -space-y-2 text-black/75 dark:text-white/90 dark:hover:text-white'>
-            <div className='text-2xl font-light'>strive</div>
+            <div className='text-2xl font-light tracking-tight'>strive</div>
             {/* <div className='font-semibold text-xs tracking-tighter flex-nowrap whitespace-nowrap'>Innovation Lab</div> */}
           </div>
           </div>
